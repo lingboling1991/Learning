@@ -25,15 +25,26 @@ public class Reverse {
 	}
 
 	public static ListNode reverse(ListNode head) {
-		ListNode p = null;
-		ListNode q = head;
-		while (q.next != null) {
-			ListNode r = q.next;
-			q.next = p;
-			p = q;
-			q = r;
+		ListNode pre = null;
+		ListNode cur = head;
+		while (cur != null) {
+			ListNode next = cur.next;
+			cur.next = pre;
+			pre = cur;
+			cur = next;
 		}
-		q.next = p;
-		return q;
+		return pre;
+	}
+
+	public static ListNode reverseRecursive(ListNode head) {
+		ListNode cur = head;
+
+		if (cur == null || cur.next == null)
+			return cur;
+		ListNode next = cur.next;
+		cur.next = null;
+		ListNode rest = reverseRecursive(next);
+		next.next = cur;
+		return rest;
 	}
 }
