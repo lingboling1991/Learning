@@ -1,8 +1,3 @@
-/algorithm/
-/design_pattern/
-/internet/
-/java_basic/
-/mina/
-/sdn/
 /temp/
-/transpass/
+/.gitignore
+/algorithm/

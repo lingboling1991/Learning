@@ -1,9 +1,9 @@
-package temp;
+package algorithm.interview.perfect;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class maxUpriseSub {
 	public static void main(String[] args) {
 		int[] t = { 1, 3, 5, 7, 9, 2, 4, 6, 8 };
 		List<Integer> nums = new ArrayList<>();
@@ -11,11 +11,11 @@ public class Main {
 			nums.add(t[i]);
 		}
 
-		List<Integer> res = getMaxSub(nums);
+		List<Integer> res = getMaxUpriseSub(nums);
 
 	}
 
-	public static List<Integer> getMaxSub(List<Integer> nums) {
+	public static List<Integer> getMaxUpriseSub(List<Integer> nums) {
 		int len = nums.size();
 		List<List<Integer>> dp_final = new ArrayList<List<Integer>>();// 每个值元素存储一个List，表示截至序号i所提供的最长子序列
 		ArrayList<Integer> dp0 = new ArrayList<>();
