@@ -1,44 +1,52 @@
 package temp;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class CopyOfMain {
 	public static int[][] combo;
 	public static int x;
 
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+	public static void main(String[] args) throws Exception {
 
-		while (in.hasNext()) {
-			int n = in.nextInt();
-			int v = in.nextInt();
+		post("asdfg");
+	}
 
-			int[] values = new int[n];
-			int[] weight = new int[n];
-			combo = new int[n][v + 1];
+	public static void post(String topics) throws Exception {
+		String postData = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">"
+				+ "<soapenv:Body> <m:print  xmlns:m=\"http://web_service.java_basic/\"> <arg0>"
+				+ topics
+				+ "</arg0> </m:print> </soapenv:Body> </soapenv:Envelope>";
+		byte[] dataArray = postData.getBytes("UTF-8");
 
-			for (int i = 0; i < n; i++) {
-				weight[i] = in.nextInt();
-				values[i] = in.nextInt();
-			}
+		String spec = "http://localhost:8888/cal";
+		URL url = new URL(spec);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setDoInput(true);
+		conn.setDoOutput(true);
+		conn.setInstanceFollowRedirects(true);
+		conn.setRequestProperty("content-type", "text/xml;charset=UTF-8");
 
-			int res = zeroOne(values, weight, v);
-			System.out.println(res);
+		conn.connect();
+		OutputStream os = conn.getOutputStream();// 拿到输出流
 
-			int z = combo[0][v];
-			String s = String.valueOf(z);
-			char[] c = s.toCharArray();
+		os.write(dataArray);
+		os.flush();
+		os.close();
 
-			if (c.length == 1 && c[0] == '0') {
-				System.out.println("NO");
-			}
+		InputStream is = conn.getInputStream();// 拿到输入流
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader br = new BufferedReader(isr);
+		String s = br.readLine();
 
-			for (int i = 0; i < c.length; i++) {
-				if (c[i] != '0') {
-					System.out.println(c[i] + " ");
-				}
-			}
-		}
+		br.close();
+		isr.close();
+		is.close();
 	}
 
 	public static int zeroOne(int[] values, int[] weight, int capicity) {
