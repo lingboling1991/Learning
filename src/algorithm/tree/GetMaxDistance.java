@@ -1,8 +1,8 @@
-package temp;
+package algorithm.tree;
 
 import algorithm.util.TreeNode;
 
-public class Main {
+public class GetMaxDistance {
 
 	public static int maxDistance = 0;
 

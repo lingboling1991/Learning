@@ -1,6 +1,7 @@
 package algorithm.other;
 
 public class PalindromicSubstring {
+	// 最长回文子串
 	public static String getLongest(String src) {
 		int start = 0, end = 0;
 

@@ -5,6 +5,9 @@ public class TreeNode {
 	public TreeNode left;
 	public TreeNode right;
 
+	public int maxLeft;// ×ó±ß×î³¤±ßÊý
+	public int maxRight;
+
 	public TreeNode(int val) {
 		this.val = val;
 		this.left = null;
