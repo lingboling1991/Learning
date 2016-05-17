@@ -1,4 +1,4 @@
-package algorithm.interview.headwin;
+package algorithm.interview.handwin;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,6 +9,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -23,26 +24,29 @@ import java.util.Set;
  */
 public class ChatRoomServer {
 
+	public static HashMap<SelectionKey, Long> activeTimer;// 记录上次活动的时间
+
 	private Selector selector = null;
 	static final int port = 9999;
-	private Charset charset = Charset.forName("UTF-8");
-	// 用来记录在线人数，以及昵称
-	private static HashSet<String> users = new HashSet<String>();
 
-	private static String USER_EXIST = "system message: user exist, please change a name";
-	// 相当于自定义协议格式，与客户端协商好
-	private static String USER_CONTENT_SPILIT = "#@#";
+	private Charset charset = Charset.forName("UTF-8");
+	private static HashSet<String> users = new HashSet<String>();// 用来记录在线人数，以及昵称
+	private static final String USER_EXIST = "system message: user exist, please change a name";
+	private static final String USER_CONTENT_SPILIT = "#@#";
+	private static final String CLIENT_QUIT = "client_quit";
 
 	private static boolean flag = false;
 
 	public void init() throws IOException {
+		// 开辟一个新线程来读取从服务器端的数据
+		new Thread(new ActiveCheck()).start();
+
 		selector = Selector.open();
 		ServerSocketChannel ssc = ServerSocketChannel.open();
 		ssc.bind(new InetSocketAddress(port));
-		// 非阻塞的方式
-		ssc.configureBlocking(false);
-		// 注册到选择器上，设置为监听状态
-		ssc.register(selector, SelectionKey.OP_ACCEPT);
+
+		ssc.configureBlocking(false);// 非阻塞的方式
+		ssc.register(selector, SelectionKey.OP_ACCEPT); // 注册到选择器上，设置为监听状态
 
 		System.out.println("Server is listening now...");
 
@@ -60,10 +64,45 @@ public class ChatRoomServer {
 		}
 	}
 
+	private class ActiveCheck implements Runnable {
+		@Override
+		public void run() {
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			for (SelectionKey tmpSk : activeTimer.keySet()) {
+				long res = System.currentTimeMillis() - activeTimer.get(tmpSk);
+				if (res > 60 * 1000) {// 超时就退出
+					SocketChannel tmpSc = (SocketChannel) tmpSk.channel();
+					activeTimer.remove(tmpSk);
+					try {
+						sendQuitMsg(tmpSk);// 让client也退出
+						// BroadCast(selector, tmpSc, );// 广播通知其他用户有人掉线
+						tmpSk.cancel();// 本地退出连接
+						tmpSc.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+
+		private void sendQuitMsg(SelectionKey tmpSk) throws IOException {
+			SocketChannel sc = (SocketChannel) tmpSk.channel();
+			String line = CLIENT_QUIT;
+			sc.write(charset.encode(line));
+		}
+
+	}
+
 	public void dealWithSelectionKey(ServerSocketChannel server, SelectionKey sk)
 			throws IOException {
 		if (sk.isAcceptable()) {
 			SocketChannel sc = server.accept();
+			activeTimer.put(sk, System.currentTimeMillis());
 			// 非阻塞模式
 			sc.configureBlocking(false);
 			// 注册选择器，并设置为读取模式，收到一个连接请求，然后起一个SocketChannel，并注册到selector上，之后这个连接的数据，就由这个SocketChannel处理
@@ -74,8 +113,9 @@ public class ChatRoomServer {
 			sc.write(charset.encode("Please input your name."));
 		}
 		// 处理来自客户端的数据读取请求
-		if (sk.isReadable()) {
+		else if (sk.isReadable()) {
 			// 返回该SelectionKey对应的 Channel，其中有数据需要读取
+			activeTimer.put(sk, System.currentTimeMillis());
 			SocketChannel sc = (SocketChannel) sk.channel();
 			ByteBuffer buff = ByteBuffer.allocate(1024);
 			StringBuilder content = new StringBuilder();
@@ -102,7 +142,6 @@ public class ChatRoomServer {
 					String name = arrayContent[0];
 					if (users.contains(name)) {
 						sc.write(charset.encode(USER_EXIST));
-
 					} else {
 						users.add(name);
 						int num = OnlineNum(selector);
@@ -123,7 +162,6 @@ public class ChatRoomServer {
 					}
 				}
 			}
-
 		}
 	}
 
