@@ -1,6 +1,6 @@
 /**
  * MainServer.java Nov 23, 2009
- * 
+ * <p/>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.server;
@@ -21,10 +21,10 @@ import java.util.List;
  * @version 1.0, Nov 23, 2009 11:04:50 PM
  */
 public class MainServer {
-	// ËùÓÐ¿Í»§¶ËÁÐ±í
+	// ï¿½ï¿½ï¿½Ð¿Í»ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	private static List<ConnectionClientInfo> allClients = new ArrayList<ConnectionClientInfo>();
 
-	// ¿ªÊ¼P2P½»»»·þÎñ(³ÌÐòÆðµã)
+	// ï¿½ï¿½Ê¼P2Pï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	private static void StartP2PServiveChanege() throws IOException {
 		DatagramSocket ds = new DatagramSocket(1000);
 
@@ -36,17 +36,17 @@ public class MainServer {
 		while (!isEnd) {
 			ds.receive(p);
 
-			// È¡³öÐÅÏ¢
+			// È¡ï¿½ï¿½ï¿½ï¿½Ï¢
 			String content = new String(p.getData(), 0, p.getLength());
 			String ip = p.getAddress().getHostAddress();
 			int port = p.getPort();
 
-			// Êä³ö½ÓÊÕµ½µÄÊý¾Ý
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (!content.startsWith(MyProtocol.HEART)) {
 				System.out.println(ip + ":" + port + " >>>> " + content);
 			}
 
-			// ´¦Àí¿ØÖÆ²¿·Ö,Î¯ÍÐ¸øÆäËû·½·¨×ö
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ²ï¿½ï¿½ï¿½,Î¯ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (content.startsWith(MyProtocol.LOGIN)) {
 				dealLogin(ds, p, content);
 			} else if (content.startsWith(MyProtocol.HEART)) {
@@ -63,9 +63,9 @@ public class MainServer {
 		ds.close();
 	}
 
-	// ´¦ÀíµÇÂ½ÇëÇó£¬¼´Ë­·¢À´loginÐÅÏ¢£¬Ë­¾Í»á»ñµÃËùÓÐ¿Í»§¶ËµÄÐÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ó£¬¼ï¿½Ë­ï¿½ï¿½ï¿½ï¿½loginï¿½ï¿½Ï¢ï¿½ï¿½Ë­ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¿Í»ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ï¢
 	private static void dealLogin(DatagramSocket ds, DatagramPacket p,
-			String content) {
+	                              String content) {
 		ConnectionClientInfo c = new ConnectionClientInfo();
 
 		String[] clientLogin = StringUtil.splitString(content,
@@ -76,7 +76,7 @@ public class MainServer {
 		c.setPort(p.getPort());
 		allClients.add(c);
 
-		// »ñÈ¡ËùÓÐ¿Í»§¶Ë,Á¬½Ó³É×Ö·û´®
+		// ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ð¿Í»ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Ó³ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 		String listStr = MyProtocol.LIST_ONLINE + MyProtocol.SPLITOR
 				+ serialList();
 
@@ -92,7 +92,7 @@ public class MainServer {
 
 	}
 
-	// °ÑÁÐ±íÊý¾ÝÐòÁÐ»¯
+	// ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
 	private static String serialList() {
 		String str = "";
 
@@ -108,14 +108,14 @@ public class MainServer {
 		return str;
 	}
 
-	// ´¦ÀíÐÄÌø°ü
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private static void dealHeart(DatagramSocket ds, DatagramPacket p,
-			String content) {
+	                              String content) {
 	}
 
-	// Í¨Öª´ò¶´£¬°Ñ·¢ÐÅÕßµÄÐÅÏ¢>>>ÐÅÏ¢ÖÐÌáµ½µÄ¿Í»§¶Ë
+	// Í¨Öªï¿½ò¶´£ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½Ï¢>>>ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½áµ½ï¿½Ä¿Í»ï¿½ï¿½ï¿½
 	private static void notifyPunchHole(DatagramSocket ds, DatagramPacket p,
-			String content) throws IOException {
+	                                    String content) throws IOException {
 		String[] clientInfo = StringUtil.splitString(content,
 				MyProtocol.SPLITOR);
 
@@ -139,9 +139,9 @@ public class MainServer {
 
 	}
 
-	// Í¨Öª´ò¶´³É¹¦
+	// Í¨Öªï¿½ò¶´³É¹ï¿½
 	private static void notifyPunchHoleSuccess(DatagramSocket ds,
-			DatagramPacket p, String content) throws IOException {
+	                                           DatagramPacket p, String content) throws IOException {
 
 		String[] clientInfo = StringUtil.splitString(content,
 				MyProtocol.SPLITOR);
@@ -160,9 +160,9 @@ public class MainServer {
 
 	}
 
-	// ´¦ÀíÐ­ÒéÃ»ÓÐ¶¨Òå¹ýµÄÇé¿ö
+	// ï¿½ï¿½ï¿½ï¿½Ð­ï¿½ï¿½Ã»ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private static void dealOther(DatagramSocket ds, DatagramPacket p,
-			String content) {
+	                              String content) {
 	}
 
 	/**

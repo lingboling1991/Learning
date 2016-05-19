@@ -1,12 +1,8 @@
 package algorithm.backtracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-
 import algorithm.util.Tools;
+
+import java.util.*;
 
 public class Combination {
 	// https://siddontang.gitbooks.io/leetcode-solution/content/backtracking/combination.html
@@ -25,8 +21,8 @@ public class Combination {
 	}
 
 	public static void combineHelper(List<List<Integer>> res,
-			List<Integer> cur, int n, int k, int level) {
-		if (cur.size() == k) {// ×¢ÒâÕâÀïÓÃcur.size()¶ø²»ÊÇlevelÀ´ÅĞ¶ÏÊÇ·ñµ½ÁË±ß½ç
+	                                 List<Integer> cur, int n, int k, int level) {
+		if (cur.size() == k) {// ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½cur.size()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½levelï¿½ï¿½ï¿½Ğ¶ï¿½ï¿½Ç·ï¿½ï¿½Ë±ß½ï¿½
 			List<Integer> tmp = Tools.copyList(cur);
 			res.add(tmp);
 			return;
@@ -46,7 +42,7 @@ public class Combination {
 			return res;
 
 		List<Integer> cur = new ArrayList<Integer>();
-		Arrays.sort(n);// ÕâÀïĞèÒªÅÅĞò£¬ÊÇÒòÎª½á¹ûÒªÇóÉıĞò
+		Arrays.sort(n);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		combineSumHelper(res, cur, n, k, 0);
 
 		List<List<Integer>> fin = new ArrayList<List<Integer>>();
@@ -62,7 +58,7 @@ public class Combination {
 	}
 
 	public static void combineSumHelper(List<List<Integer>> res,
-			List<Integer> cur, int[] n, int k, int level) {
+	                                    List<Integer> cur, int[] n, int k, int level) {
 		if (k < 0) {
 			return;
 		} else if (k == 0) {
@@ -74,7 +70,7 @@ public class Combination {
 		for (int i = level; i < n.length; i++) {
 			cur.add(n[i]);
 			k -= n[i];
-			combineSumHelper(res, cur, n, k, level + 1);// ÕâÀï¸Ä³Élevel£¬¾ÍÊÇ±íÊ¾¿ÉÒÔÖØ¸´Ê¹ÓÃÄ³¸öÊı×Ö
+			combineSumHelper(res, cur, n, k, level + 1);// ï¿½ï¿½ï¿½ï¿½Ä³ï¿½levelï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½Ê¹ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			cur.remove(cur.size() - 1);
 			k += n[i];
 		}

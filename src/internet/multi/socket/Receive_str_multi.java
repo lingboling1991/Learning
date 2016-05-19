@@ -25,10 +25,10 @@ public class Receive_str_multi {
 			byte[] data = new byte[100];
 
 			// MulticastSocket multicastSocket = new MulticastSocket(new
-			// InetSocketAddress(localAddr,7777));// ´´½¨¶à²¥Ì×½Ó×Ö²¢°ó¶¨µ½·¢ËÍ¶Ë¿Ú
-			MulticastSocket multicastSocket = new MulticastSocket(7777);// ´´½¨¶à²¥Ì×½Ó×Ö²¢°ó¶¨µ½·¢ËÍ¶Ë¿Ú
+			// InetSocketAddress(localAddr,7777));// ï¿½ï¿½ï¿½ï¿½ï¿½à²¥ï¿½×½ï¿½ï¿½Ö²ï¿½ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½Í¶Ë¿ï¿½
+			MulticastSocket multicastSocket = new MulticastSocket(7777);// ï¿½ï¿½ï¿½ï¿½ï¿½à²¥ï¿½×½ï¿½ï¿½Ö²ï¿½ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½Í¶Ë¿ï¿½
 
-			multicastSocket.joinGroup(inetAddress);// ¶à²¥Ì×½Ó×Ö¼ÓÈë¶à²¥×é
+			multicastSocket.joinGroup(inetAddress);// ï¿½à²¥ï¿½×½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½à²¥ï¿½ï¿½
 			multicastSocket.setReceiveBufferSize(100 * 1024 * 1024);
 
 			long receive_start = 0;
@@ -37,8 +37,8 @@ public class Receive_str_multi {
 			System.out.println("start listening");
 			while (true) {
 				DatagramPacket datagramPacket = new DatagramPacket(data,
-						data.length);// ´´½¨Ò»¸öÓÃÓÚ½ÓÊÕÊý¾ÝµÄÊý¾Ý°ü
-				multicastSocket.receive(datagramPacket);// ½ÓÊÕÊý¾Ý°ü
+						data.length);// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½Ý°ï¿½
+				multicastSocket.receive(datagramPacket);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½
 
 				if (counter == 0) {
 					receive_start = System.currentTimeMillis();
@@ -49,13 +49,13 @@ public class Receive_str_multi {
 
 				if (res.contains("!")) {
 					receive_end = System.currentTimeMillis();
-					
+
 					long time_res = receive_end - receive_start;
 
 					System.out.println("drop_packets == " + (num - counter));
 					System.out.println("total_time == " + time_res + ", drop_ratio == "
 							+ ((num - counter) / num) * 100 + "%");
-					
+
 					// break;
 				} else {
 					if (counter % 1000 == 0) {

@@ -1,17 +1,13 @@
 package java_basic.mina;
 
-import java.net.Inet4Address;
-import java.net.Inet6Address;
-import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import java.net.UnknownHostException;
-import java.nio.charset.Charset;
-
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioDatagramConnector;
+
+import java.net.*;
+import java.nio.charset.Charset;
 
 public class MinaTimeClient {
 
@@ -20,7 +16,7 @@ public class MinaTimeClient {
 	private static final int PORT = 7777;
 
 	public static void main(String[] args) throws UnknownHostException {
-		// ´´½¨¿Í»§¶ËÁ¬½ÓÆ÷.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 		NioDatagramConnector connector = new NioDatagramConnector();
 		connector.getFilterChain().addLast("logger", new LoggingFilter());
 		connector.getFilterChain().addLast(
@@ -28,12 +24,12 @@ public class MinaTimeClient {
 				new ProtocolCodecFilter(new TextLineCodecFactory(Charset
 						.forName("UTF-8"))));
 
-		// ÉèÖÃÁ¬½Ó³¬Ê±¼ì²éÊ±¼ä
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½Ê±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 		connector.setConnectTimeoutCheckInterval(30);
 		connector.getSessionConfig().setSendBufferSize(102400000);
 		connector.setHandler(new TimeClientHandler());
 
-		// ½¨Á¢Á¬½Ó
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ConnectFuture cf = null;
 		SocketAddress v4Addr = new InetSocketAddress(
 				Inet4Address.getByName(v4IP), PORT);
@@ -41,7 +37,7 @@ public class MinaTimeClient {
 				Inet6Address.getByName(v6IP), PORT);
 
 		cf = connector.connect(v6Addr);
-		// µÈ´ýÁ¬½Ó´´½¨Íê³É
+		// ï¿½È´ï¿½ï¿½ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		cf.awaitUninterruptibly();
 
 		for (int i = 0; i < 10; i++) {
@@ -49,9 +45,9 @@ public class MinaTimeClient {
 		}
 		cf.getSession().write("quit");
 
-		// µÈ´ýÁ¬½Ó¶Ï¿ª
+		// ï¿½È´ï¿½ï¿½ï¿½ï¿½Ó¶Ï¿ï¿½
 		cf.getSession().getCloseFuture().awaitUninterruptibly();
-		// ÊÍ·ÅÁ¬½Ó
+		// ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½
 		connector.dispose();
 	}
 }

@@ -11,7 +11,7 @@ public class IPv6Cal {
 				+ topicCodeLength + topicCode;
 
 		String finalNewTopicCode = getNewTopicCode(newTopicCode);
-		
+
 		System.out.println(finalNewTopicCode);
 	}
 

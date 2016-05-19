@@ -5,11 +5,11 @@ public class Dijkstra {
 
 	public static void main(String[] args) {
 		int[][] weight1 = {// ÁÚ½Ó¾ØÕó
-		{ 0, 3, 2000, 7, M }, { 3, 0, 4, 2, M }, { M, 4, 0, 5, 4 },
-				{ 7, 2, 5, 0, 6 }, { M, M, 4, 6, 0 } };
+				{0, 3, 2000, 7, M}, {3, 0, 4, 2, M}, {M, 4, 0, 5, 4},
+				{7, 2, 5, 0, 6}, {M, M, 4, 6, 0}};
 
-		int[][] weight2 = { { 0, 10, M, 30, 100 }, { M, 0, 50, M, M },
-				{ M, M, 0, M, 10 }, { M, M, 20, 0, 60 }, { M, M, M, M, 0 } };
+		int[][] weight2 = {{0, 10, M, 30, 100}, {M, 0, 50, M, M},
+				{M, M, 0, M, 10}, {M, M, 20, 0, 60}, {M, M, M, M, 0}};
 
 		int start = 0;
 		// int[] shortPath = dijkstra(weight2, start);

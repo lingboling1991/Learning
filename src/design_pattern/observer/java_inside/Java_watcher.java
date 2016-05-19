@@ -9,16 +9,16 @@ public class Java_watcher implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("ÎÒµÄÃû×ÖÊÇ£º" + name + "£¬ÎÒÕýÔÚ¹Û²ì£º" + o.getClass().getName()
-				+ "£¬Ëû·¢À´µÄ¸Ä±äÁ¿ÊÇ£º" + arg);
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		System.out.println("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + name + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹Û²ì£º" + o.getClass().getName()
+				+ "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸Ä±ï¿½ï¿½ï¿½ï¿½Ç£ï¿½" + arg);
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

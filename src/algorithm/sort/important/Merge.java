@@ -1,7 +1,7 @@
 package algorithm.sort.important;
 
 public class Merge {
-	// ÎÈ¶¨£¬Æ½¾ùÊ±¼äO(nlogn)£¬¶îÍâ¿Õ¼äO(n)£¬n´óÊ±Ð§ÂÊ½Ï¸ß£¬µ«ÐèÒª´óÄÚ´æ
+	// ï¿½È¶ï¿½ï¿½ï¿½Æ½ï¿½ï¿½Ê±ï¿½ï¿½O(nlogn)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½O(n)ï¿½ï¿½nï¿½ï¿½Ê±Ð§ï¿½Ê½Ï¸ß£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ú´ï¿½
 	public static void mergeSort(int[] nums) {
 		sort(nums, 0, nums.length - 1);
 	}
@@ -9,7 +9,7 @@ public class Merge {
 	public static void sort(int[] nums, int left, int right) {
 		if (left < right) {
 			int mid = (left + right) / 2;
-			// ¶þÂ·¹é²¢ÅÅÐòÀïÃæÓÐÁ½¸öSort£¬¶àÂ·¹é²¢ÅÅÐòÀïÃæÐ´¶à¸öSort¾Í¿ÉÒÔÁË
+			// ï¿½ï¿½Â·ï¿½é²¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Sortï¿½ï¿½ï¿½ï¿½Â·ï¿½é²¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½Sortï¿½Í¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			sort(nums, left, mid);
 			sort(nums, mid + 1, right);
 			merge(nums, left, mid, right);
@@ -20,7 +20,7 @@ public class Merge {
 		int[] tmp = new int[nums.length];
 		int tstart = left;
 
-		// ÕâÀïÖ»ÊÇÎªÁË±í´ïÇåÎú£¬Ð´µÄÊ±ºò²»ÐèÒªÕâÃ´¸´ÔÓ
+		// ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Îªï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½
 		int lstart = left;
 		int lstop = mid;
 		int rstart = mid + 1;
@@ -45,7 +45,7 @@ public class Merge {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 7, 6, 9, 4, 8, 3, 2, 5, 1 };
+		int[] nums = {7, 6, 9, 4, 8, 3, 2, 5, 1};
 		mergeSort(nums);
 		System.out.println("a");
 	}

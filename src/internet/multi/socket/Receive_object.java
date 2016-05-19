@@ -3,7 +3,6 @@ package internet.multi.socket;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
-import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.MulticastSocket;
@@ -22,18 +21,18 @@ public class Receive_object {
 			int port = 7777;
 
 			String localAddr = "10.109.253.27";
-			MulticastSocket multicastSocket = new MulticastSocket(new InetSocketAddress(localAddr , port));// ´´½¨¶à²¥Ì×½Ó×Ö²¢°ó¶¨µ½·¢ËÍ¶Ë¿Ú
+			MulticastSocket multicastSocket = new MulticastSocket(new InetSocketAddress(localAddr, port));// ï¿½ï¿½ï¿½ï¿½ï¿½à²¥ï¿½×½ï¿½ï¿½Ö²ï¿½ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½Í¶Ë¿ï¿½
 
-			multicastSocket.joinGroup(inetAddress);// ¶à²¥Ì×½Ó×Ö¼ÓÈë¶à²¥×é
+			multicastSocket.joinGroup(inetAddress);// ï¿½à²¥ï¿½×½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½à²¥ï¿½ï¿½
 			multicastSocket.setLoopbackMode(true);
 			multicastSocket.setReceiveBufferSize(10 * 1024 * 1024);
 
-			DatagramPacket datagramPacket = new DatagramPacket(buf, buf.length);// ´´½¨Ò»¸öÓÃÓÚ½ÓÊÕÊý¾ÝµÄÊý¾Ý°ü
+			DatagramPacket datagramPacket = new DatagramPacket(buf, buf.length);// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½Ý°ï¿½
 
 			System.out.println("ready to receive ...");
 			while (true) {
 				bais = new ByteArrayInputStream(buf);
-				multicastSocket.receive(datagramPacket);// ½ÓÊÕÊý¾Ý°ü
+				multicastSocket.receive(datagramPacket);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½
 				ois = new ObjectInputStream(bais);
 				Object msg = ois.readObject();
 				String string = (String) msg;

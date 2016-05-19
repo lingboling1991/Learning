@@ -1,6 +1,6 @@
 /**
  * MainClient.java Nov 23, 2009
- * 
+ * <p/>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.client;
@@ -30,48 +30,48 @@ public class MainClient {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.print("nickname:");
-		String nickname = scanner.next();// êÇ³Æ
+		String nickname = scanner.next();// ï¿½Ç³ï¿½
 
 		System.out.print("Server IP:");
-		String ip = scanner.next();// ·þÎñÆ÷ipµØÖ·
+		String ip = scanner.next();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ipï¿½ï¿½Ö·
 
 		System.out.print("Server port:");
-		int port = scanner.nextInt();// ·þÎñÆ÷¶Ë¿Ú
+		int port = scanner.nextInt();// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½
 
 		System.out.println(ip + "|" + port + "|" + nickname);
 
 		// UDP
 		DatagramSocket ds = new DatagramSocket();
 
-		// µÇÂ½·þÎñÆ÷
+		// ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String loginStr = MyProtocol.LOGIN + MyProtocol.SPLITOR + nickname;
-		// ¹¹ÔìÒª·¢ËÍµÄ°ü
+		// ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ÍµÄ°ï¿½
 		DatagramPacket lp = new DatagramPacket(loginStr.getBytes(),
 				loginStr.length(), InetAddress.getByName(ip), port);
-		// ·¢ËÍµÇÂ½ÐÅÏ¢
+		// ï¿½ï¿½ï¿½Íµï¿½Â½ï¿½ï¿½Ï¢
 		ds.send(lp);
 
-		// Æô¶¯ÐÄÌøÏß³Ì
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 		String heartStr = MyProtocol.HEART + MyProtocol.SPLITOR + nickname
 				+ "'s Heart Package";
 		DatagramPacket hp = new DatagramPacket(heartStr.getBytes(),
 				heartStr.length(), InetAddress.getByName(ip), port);
 		new Thread(new HeartThread(ds, hp)).start();
 
-		// Ñ­»·½ÓÊÕ
+		// Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		byte[] buf = new byte[1024];
 		DatagramPacket rp = new DatagramPacket(buf, 1024);
 		boolean isEnd = false;
 		while (!isEnd) {
 			ds.receive(rp);
-			// È¡³öÐÅÏ¢
+			// È¡ï¿½ï¿½ï¿½ï¿½Ï¢
 			String content = new String(rp.getData(), 0, rp.getLength());
 			String rip = rp.getAddress().getHostAddress();
 			int rport = rp.getPort();
-			// Êä³ö½ÓÊÕµ½µÄÊý¾Ý
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			System.out.println(rip + ":" + rport + " >>>> " + content);
 
-			// ´¦Àí¿ØÖÆ²¿·Ö,Î¯ÍÐ¸øÆäËû·½·¨×ö
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ²ï¿½ï¿½ï¿½,Î¯ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (content.startsWith(MyProtocol.LIST_ONLINE)) {
 				dealListOnline(ds, rp, content);
 			} else if (content.startsWith(MyProtocol.PUNCH_HOLE_TO)) {
@@ -79,7 +79,7 @@ public class MainClient {
 			} else if (content.startsWith(MyProtocol.CAN_P2P_TO)) {
 				firtTimeConnectP2P(ds, rp, content);
 			} else if (content.startsWith(MyProtocol.HELLO_P2P_FRIEND)) {
-				// ÕâÀïÐèÒª´¦Àí·¢À´µÄÐÅÏ¢£¬¿´ÊÇ´ò¶´»¹ÊÇÄãºÃ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ò¶´»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				String[] clientInfo = StringUtil.splitString(content,
 						MyProtocol.SPLITOR);
 				System.out.println(clientInfo[1]);
@@ -90,41 +90,41 @@ public class MainClient {
 		ds.close();
 	}
 
-	// ±»·þÎñÆ÷Í¨Öª,¶Ô·½´ò¶´³É¹¦
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨Öª,ï¿½Ô·ï¿½ï¿½ò¶´³É¹ï¿½
 	private static void firtTimeConnectP2P(DatagramSocket ds,
-			DatagramPacket rp, String content) throws IOException {
+	                                       DatagramPacket rp, String content) throws IOException {
 		String[] clientInfo = StringUtil.splitString(content,
 				MyProtocol.SPLITOR);
 
 		String ip = clientInfo[1];
 		int port = Integer.parseInt(clientInfo[2]);
 
-		String send = MyProtocol.HELLO_P2P_FRIEND + MyProtocol.SPLITOR + "ÄãºÃ";
+		String send = MyProtocol.HELLO_P2P_FRIEND + MyProtocol.SPLITOR + "ï¿½ï¿½ï¿½";
 		DatagramPacket p2 = new DatagramPacket(send.getBytes(),
 				send.getBytes().length, InetAddress.getByName(ip), port);
 
 		ds.send(p2);
 	}
 
-	// ´ò¶´
+	// ï¿½ï¿½
 	private static void dealPunchTo(DatagramSocket ds, DatagramPacket rp,
-			String content) throws IOException {
+	                                String content) throws IOException {
 		String[] clientInfo = StringUtil.splitString(content,
 				MyProtocol.SPLITOR);
 
 		String ip = clientInfo[1];
 		int port = Integer.parseInt(clientInfo[2]);
 
-		String send = MyProtocol.HELLO_P2P_FRIEND + MyProtocol.SPLITOR + "´ò¶´";
+		String send = MyProtocol.HELLO_P2P_FRIEND + MyProtocol.SPLITOR + "ï¿½ï¿½";
 		DatagramPacket p2 = new DatagramPacket(send.getBytes(),
 				send.getBytes().length, InetAddress.getByName(ip), port);
 
-		// ·¢°ü´ò¶´,¶à·¢¼¸´Î
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½à·¢ï¿½ï¿½ï¿½ï¿½
 		ds.send(p2);
 		ds.send(p2);
 		ds.send(p2);
 
-		// ¸æËß·þÎñÆ÷´ò¶´³É¹¦
+		// ï¿½ï¿½ï¿½ß·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò¶´³É¹ï¿½
 		send = MyProtocol.SUCCESS_HOLE_TO + MyProtocol.SPLITOR + ip
 				+ MyProtocol.SPLITOR + port;
 		DatagramPacket p3 = new DatagramPacket(send.getBytes(),
@@ -133,10 +133,10 @@ public class MainClient {
 
 	}
 
-	// ·µ»ØÁÐ±íµÄÊ±ºò
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ê±ï¿½ï¿½
 	private static void dealListOnline(DatagramSocket ds, DatagramPacket rp,
-			String content) throws IOException {
-		//System.out.print("ºÍË­Á¬½Ó(192.168.0.2|1000|xwz),ÇëÊäÈë(xxx²»Á¬½Ó):");
+	                                   String content) throws IOException {
+		//System.out.print("ï¿½ï¿½Ë­ï¿½ï¿½ï¿½ï¿½(192.168.0.2|1000|xwz),ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(xxxï¿½ï¿½ï¿½ï¿½ï¿½ï¿½):");
 		Scanner s = new Scanner(System.in);
 
 		String input = s.next();

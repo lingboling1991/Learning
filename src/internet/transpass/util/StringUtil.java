@@ -1,6 +1,6 @@
 /**
  * StringUtil.java Nov 25, 2009
- * 
+ * <p/>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.util;
@@ -8,13 +8,13 @@ package internet.transpass.util;
 import java.util.StringTokenizer;
 
 /**
- * ×Ö·û´®·Ö¸î´¦Àí
- * 
+ * ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ö¸î´¦ï¿½ï¿½
+ *
  * @author xwz
  * @version 1.0, Nov 25, 2009 11:45:45 PM
  */
 public class StringUtil {
-	// °´ÕÕsplitor·Ö¸îsrc
+	// ï¿½ï¿½ï¿½ï¿½splitorï¿½Ö¸ï¿½src
 	public static String[] splitString(String src, String splitor) {
 		StringTokenizer s = new StringTokenizer(src, splitor);
 

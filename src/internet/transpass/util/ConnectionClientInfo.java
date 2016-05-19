@@ -1,13 +1,13 @@
 /**
  * ConnectionClientInfo.java Nov 25, 2009
- * 
+ * <p/>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.util;
 
 /**
- * ÐèÒª±£´æµÄ¿Í»§¶ËÐÅÏ¢
- * 
+ * ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+ *
  * @author xwz
  * @version 1.0, Nov 25, 2009 9:54:45 PM
  */
