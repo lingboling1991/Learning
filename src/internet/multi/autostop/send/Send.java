@@ -1,7 +1,5 @@
 package internet.multi.autostop.send;
 
-import internet.multi.autostop.send.Flag;
-
 import java.net.DatagramPacket;
 import java.net.Inet6Address;
 import java.net.MulticastSocket;
@@ -14,12 +12,12 @@ public class Send implements Runnable {
 
 		try {
 			Inet6Address inetAddress = (Inet6Address) Inet6Address
-					.getByName("FF01:0000:0000:0000:0001:2345:6789:abcd");// ¸ù¾ÝÖ÷»úÃû·µ»ØÖ÷»úµÄIPµØÖ·
+					.getByName("FF01:0000:0000:0000:0001:2345:6789:abcd");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½Ö·
 
 			byte[] msg = "ssssssssssssfffffffffdddddddddddddddddddddddddddddddddddddddddddddddddddddddffsddddddddddddd"
 					.getBytes();
 			DatagramPacket datagramPacket = new DatagramPacket(msg, msg.length,
-					inetAddress, 7777);// Êý¾Ý°ü°üº¬ÏûÏ¢ÄÚÈÝ£¬ÏûÏ¢³¤¶È£¬¶à²¥IPºÍ¶Ë¿Ú
+					inetAddress, 7777);// ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½È£ï¿½ï¿½à²¥IPï¿½Í¶Ë¿ï¿½
 			MulticastSocket multicastSocket = new MulticastSocket();
 			multicastSocket.joinGroup(inetAddress);
 			multicastSocket.setSendBufferSize(100 * 1024 * 1024);
@@ -27,7 +25,7 @@ public class Send implements Runnable {
 			System.out.println("start sending");
 			while (!flag.isStop()) {
 				System.out.println("aaa");
-				multicastSocket.send(datagramPacket);// ·¢ËÍÊý¾Ý
+				multicastSocket.send(datagramPacket);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 			System.out.println("end sending");
 //			System.exit(0);

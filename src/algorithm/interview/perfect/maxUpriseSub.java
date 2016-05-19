@@ -5,10 +5,10 @@ import java.util.List;
 
 public class maxUpriseSub {
 	public static void main(String[] args) {
-		int[] t = { 1, 3, 5, 7, 9, 2, 4, 6, 8 };
+		int[] t = {1, 3, 5, 7, 9, 2, 4, 6, 8};
 		List<Integer> nums = new ArrayList<>();
-		for (int i = 0; i < t.length; i++) {
-			nums.add(t[i]);
+		for (int o : t) {
+			nums.add(o);
 		}
 
 		List<Integer> res = getMaxUpriseSub(nums);
@@ -17,17 +17,17 @@ public class maxUpriseSub {
 
 	public static List<Integer> getMaxUpriseSub(List<Integer> nums) {
 		int len = nums.size();
-		List<List<Integer>> dp_final = new ArrayList<List<Integer>>();// Ã¿¸öÖµÔªËØ´æ´¢Ò»¸öList£¬±íÊ¾½ØÖÁÐòºÅiËùÌá¹©µÄ×î³¤×ÓÐòÁÐ
+		List<List<Integer>> dp_final = new ArrayList<>();// Ã¿ï¿½ï¿½ÖµÔªï¿½Ø´æ´¢Ò»ï¿½ï¿½Listï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ArrayList<Integer> dp0 = new ArrayList<>();
 		dp0.add(nums.get(0));
 		dp_final.add(0, dp0);
 		int max_length = dp0.size();
-		int max_index = 0;// ×î³¤´®ÔÚdpsÖÐµÄÎ»ÖÃ
+		int max_index = 0;// ï¿½î³¤ï¿½ï¿½ï¿½ï¿½dpsï¿½Ðµï¿½Î»ï¿½ï¿½
 
-		for (int i = 1; i < len; i++) {// ×Ó´®½ØÖ¹µ½µÚi¸öÊý
+		for (int i = 1; i < len; i++) {// ï¿½Ó´ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½
 			ArrayList<Integer> dpi = new ArrayList<>();
-			int max_by_j = 0;// ½ØÖÁÊý×Öi£¬ÔÚÓÉj½áÎ²µÄ×ÓÐòÁÐµÄ°ïÖúÏÂ£¬ÄÜ´Õ³öÀ´µÄ×î³¤×ÓÐòÁÐµÄ³¤¶È
-			int mark = -1;// ½ØÖÁÊý×Öi£¬Ö®ËùÒÔÄÜ´Õ³ö×î³¤×ÓÐòÁÐ£¬ÊÇÔÚÖ®Ç°ÓÉmarkÊý×Ö½áÎ²µÄ×ÓÐòÁÐµÄ°ïÖúÏÂÍê³É
+			int max_by_j = 0;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ°ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½Ü´Õ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ³ï¿½ï¿½ï¿½
+			int mark = -1;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½Ü´Õ³ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½markï¿½ï¿½ï¿½Ö½ï¿½Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for (int j = i - 1; j >= 0; j--) {
 				if (nums.get(i) > nums.get(j)) {
 					if (dp_final.get(j).size() + 1 > max_by_j) {
@@ -37,7 +37,7 @@ public class maxUpriseSub {
 				}
 			}
 			dpi.add(nums.get(i));
-			if (mark >= 0) {// Æ´½ÓÒ»ÏÂ£¬°ÑÉÏÃæÕÒµ½µÄÇ°ÃæµÄ×î´ó×Ó´®Æ´½øÈ¥
+			if (mark >= 0) {// Æ´ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó´ï¿½Æ´ï¿½ï¿½È¥
 				dpi.addAll(dp_final.get(mark));
 			}
 			dp_final.add(i, dpi);
@@ -47,7 +47,7 @@ public class maxUpriseSub {
 			}
 		}
 
-		return dp_final.get(max_index);// ÕâÀïÊÇµ¹ÐòµÄ
+		return dp_final.get(max_index);// ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½
 
 		/*
 		 * for (int i = dps.get(max_index).size() - 1; i >= 0; i--) { if (i ==

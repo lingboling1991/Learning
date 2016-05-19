@@ -45,7 +45,7 @@ public class Merge {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 7, 6, 9, 4, 8, 3, 2, 5, 1 };
+		int[] nums = {7, 6, 9, 4, 8, 3, 2, 5, 1};
 		mergeSort(nums);
 		System.out.println("a");
 	}

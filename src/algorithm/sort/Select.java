@@ -1,7 +1,7 @@
 package algorithm.sort;
 
 public class Select {
-	// 不稳定，平均时间O(n^2)，额外空间O(1)，n小时较好
+	// 锟斤拷锟饺讹拷锟斤拷平锟斤拷时锟斤拷O(n^2)锟斤拷锟斤拷锟斤拷占锟絆(1)锟斤拷n小时锟较猴拷
 	public static void select(int[] nums) {
 		for (int i = 0; i < nums.length - 1; i++) {
 			int min = i;
@@ -18,7 +18,7 @@ public class Select {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 3, 1, 9, 7, 2, 4, 9, 6 };
+		int[] nums = {3, 1, 9, 7, 2, 4, 9, 6};
 		select(nums);
 	}
 

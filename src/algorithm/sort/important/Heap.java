@@ -8,7 +8,7 @@ public class Heap {
 	static int heapsize;
 
 	public static void main(String[] args) {
-		int[] nums = { 9, 7, 3, 1, 6, 8, 2, 4, 5 };
+		int[] nums = {9, 7, 3, 1, 6, 8, 2, 4, 5};
 		heapsize = nums.length;
 		heap(nums);
 

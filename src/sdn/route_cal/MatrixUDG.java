@@ -1,7 +1,7 @@
 package sdn.route_cal;
 
 /**
- * Java: ÁÚ½Ó¾ØÕó±íÊ¾µÄ"ÎÞÏòÍ¼(List Undirected Graph)"
+ * Java: ï¿½Ú½Ó¾ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½Í¼(List Undirected Graph)"
  *
  * @author skywang
  * @date 2014/04/19
@@ -12,15 +12,15 @@ import java.util.Scanner;
 
 public class MatrixUDG {
 
-	private char[] mVexs; // ¶¥µã¼¯ºÏ
-	private int[][] mMatrix; // ÁÚ½Ó¾ØÕó
+	private char[] mVexs; // ï¿½ï¿½ï¿½ã¼¯ï¿½ï¿½
+	private int[][] mMatrix; // ï¿½Ú½Ó¾ï¿½ï¿½ï¿½
 
 	/*
-	 * ´´½¨Í¼(×Ô¼ºÊäÈëÊý¾Ý)
+	 * ï¿½ï¿½ï¿½ï¿½Í¼(ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	 */
 	public MatrixUDG() {
 
-		// ÊäÈë"¶¥µãÊý"ºÍ"±ßÊý"
+		// ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½"
 		System.out.printf("input vertex number: ");
 		int vlen = readInt();
 		System.out.printf("input edge number: ");
@@ -30,17 +30,17 @@ public class MatrixUDG {
 			return;
 		}
 
-		// ³õÊ¼»¯"¶¥µã"
+		// ï¿½ï¿½Ê¼ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½"
 		mVexs = new char[vlen];
 		for (int i = 0; i < mVexs.length; i++) {
 			System.out.printf("vertex(%d): ", i);
 			mVexs[i] = readChar();
 		}
 
-		// ³õÊ¼»¯"±ß"
+		// ï¿½ï¿½Ê¼ï¿½ï¿½"ï¿½ï¿½"
 		mMatrix = new int[vlen][vlen];
 		for (int i = 0; i < elen; i++) {
-			// ¶ÁÈ¡±ßµÄÆðÊ¼¶¥µãºÍ½áÊø¶¥µã
+			// ï¿½ï¿½È¡ï¿½ßµï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			System.out.printf("edge(%d):", i);
 			char c1 = readChar();
 			char c2 = readChar();
@@ -58,25 +58,25 @@ public class MatrixUDG {
 	}
 
 	/*
-	 * ´´½¨Í¼(ÓÃÒÑÌá¹©µÄ¾ØÕó)
+	 * ï¿½ï¿½ï¿½ï¿½Í¼(ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½Ä¾ï¿½ï¿½ï¿½)
 	 * 
-	 * ²ÎÊýËµÃ÷£º vexs -- ¶¥µãÊý×é edges -- ±ßÊý×é
+	 * ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ vexs -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ edges -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public MatrixUDG(char[] vexs, char[][] edges) {
 
-		// ³õÊ¼»¯"¶¥µãÊý"ºÍ"±ßÊý"
+		// ï¿½ï¿½Ê¼ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½"
 		int vlen = vexs.length;
 		int elen = edges.length;
 
-		// ³õÊ¼»¯"¶¥µã"
+		// ï¿½ï¿½Ê¼ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½"
 		mVexs = new char[vlen];
 		for (int i = 0; i < mVexs.length; i++)
 			mVexs[i] = vexs[i];
 
-		// ³õÊ¼»¯"±ß"
+		// ï¿½ï¿½Ê¼ï¿½ï¿½"ï¿½ï¿½"
 		mMatrix = new int[vlen][vlen];
 		for (int i = 0; i < elen; i++) {
-			// ¶ÁÈ¡±ßµÄÆðÊ¼¶¥µãºÍ½áÊø¶¥µã
+			// ï¿½ï¿½È¡ï¿½ßµï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Í½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			int p1 = getPosition(edges[i][0]);
 			int p2 = getPosition(edges[i][1]);
 
@@ -85,8 +85,24 @@ public class MatrixUDG {
 		}
 	}
 
+	public static void main(String[] args) {
+		char[] vexs = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+		char[][] edges = new char[][]{{'A', 'C'}, {'A', 'D'},
+				{'A', 'F'}, {'B', 'C'}, {'C', 'D'}, {'E', 'G'},
+				{'F', 'G'}, {'H', 'I'}, {'F', 'I'}, {'J', 'H'},
+				{'F', 'J'}, {'I', 'B'}, {'A', 'H'}, {'D', 'I'}};
+		MatrixUDG pG;
+
+		// ï¿½Ô¶ï¿½ï¿½ï¿½"Í¼"(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+		// pG = new MatrixUDG();
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½"Í¼"
+		pG = new MatrixUDG(vexs, edges);
+
+		pG.print(); // ï¿½ï¿½Ó¡Í¼
+	}
+
 	/*
-	 * ·µ»ØchÎ»ÖÃ
+	 * ï¿½ï¿½ï¿½ï¿½chÎ»ï¿½ï¿½
 	 */
 	private int getPosition(char ch) {
 		for (int i = 0; i < mVexs.length; i++)
@@ -96,7 +112,7 @@ public class MatrixUDG {
 	}
 
 	/*
-	 * ¶ÁÈ¡Ò»¸öÊäÈë×Ö·û
+	 * ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½
 	 */
 	private char readChar() {
 		char ch = '0';
@@ -113,7 +129,7 @@ public class MatrixUDG {
 	}
 
 	/*
-	 * ¶ÁÈ¡Ò»¸öÊäÈë×Ö·û
+	 * ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½
 	 */
 	private int readInt() {
 		Scanner scanner = new Scanner(System.in);
@@ -121,7 +137,7 @@ public class MatrixUDG {
 	}
 
 	/*
-	 * ´òÓ¡¾ØÕó¶ÓÁÐÍ¼
+	 * ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 	 */
 	public void print() {
 		System.out.printf("Martix Graph:\n");
@@ -130,21 +146,5 @@ public class MatrixUDG {
 				System.out.printf("%d ", mMatrix[i][j]);
 			System.out.printf("\n");
 		}
-	}
-
-	public static void main(String[] args) {
-		char[] vexs = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };
-		char[][] edges = new char[][] { { 'A', 'C' }, { 'A', 'D' },
-				{ 'A', 'F' }, { 'B', 'C' }, { 'C', 'D' }, { 'E', 'G' },
-				{ 'F', 'G' }, { 'H', 'I' }, { 'F', 'I' }, { 'J', 'H' },
-				{ 'F', 'J' }, { 'I', 'B' }, { 'A', 'H' }, { 'D', 'I' } };
-		MatrixUDG pG;
-
-		// ×Ô¶¨Òå"Í¼"(ÊäÈë¾ØÕó¶ÓÁÐ)
-		// pG = new MatrixUDG();
-		// ²ÉÓÃÒÑÓÐµÄ"Í¼"
-		pG = new MatrixUDG(vexs, edges);
-
-		pG.print(); // ´òÓ¡Í¼
 	}
 }

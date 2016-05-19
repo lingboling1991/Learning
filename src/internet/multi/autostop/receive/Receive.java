@@ -10,6 +10,25 @@ import java.net.MulticastSocket;
 
 public class Receive implements Runnable {
 
+	public static void method1(String file, String conent) {
+		BufferedWriter out = null;
+		try {
+			out = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(file, true)));
+			out.write(conent);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	@Override
 	public void run() {
 		Flag flag = Flag.getInstance();
@@ -24,9 +43,9 @@ public class Receive implements Runnable {
 
 			byte[] data = new byte[100];
 
-			MulticastSocket multicastSocket = new MulticastSocket(7777);// ´´½¨¶à²¥Ì×½Ó×Ö²¢°ó¶¨µ½·¢ËÍ¶Ë¿Ú
+			MulticastSocket multicastSocket = new MulticastSocket(7777);// ï¿½ï¿½ï¿½ï¿½ï¿½à²¥ï¿½×½ï¿½ï¿½Ö²ï¿½ï¿½ó¶¨µï¿½ï¿½ï¿½ï¿½Í¶Ë¿ï¿½
 
-			multicastSocket.joinGroup(inetAddress);// ¶à²¥Ì×½Ó×Ö¼ÓÈë¶à²¥×é
+			multicastSocket.joinGroup(inetAddress);// ï¿½à²¥ï¿½×½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½à²¥ï¿½ï¿½
 			multicastSocket.setReceiveBufferSize(100 * 1024 * 1024);
 
 			long receive_start = 0;
@@ -36,8 +55,8 @@ public class Receive implements Runnable {
 			while (!flag.isStop()) {
 
 				DatagramPacket datagramPacket = new DatagramPacket(data,
-						data.length);// ´´½¨Ò»¸öÓÃÓÚ½ÓÊÕÊý¾ÝµÄÊý¾Ý°ü
-				multicastSocket.receive(datagramPacket);// ½ÓÊÕÊý¾Ý°ü
+						data.length);// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½Ý°ï¿½
+				multicastSocket.receive(datagramPacket);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½
 
 				String res = new String(data).trim();
 
@@ -62,25 +81,6 @@ public class Receive implements Runnable {
 			System.exit(0);
 		} catch (Exception exception) {
 			exception.printStackTrace();
-		}
-	}
-
-	public static void method1(String file, String conent) {
-		BufferedWriter out = null;
-		try {
-			out = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(file, true)));
-			out.write(conent);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (out != null) {
-					out.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 

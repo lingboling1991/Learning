@@ -42,8 +42,8 @@ public class Solution {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 9, 8, 7, 6, 5, 4, 3, 9, 8, 7,
-				6 };
+		int[] nums = {9, 8, 7, 6, 5, 4, 3, 2, 1, 9, 8, 7, 6, 5, 4, 3, 9, 8, 7,
+				6};
 		List<Integer> res = topKFrequent(nums, 2);
 		System.out.println(res.toString());
 	}

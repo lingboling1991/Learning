@@ -1,9 +1,9 @@
 package algorithm.tree;
 
+import algorithm.util.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
-
-import algorithm.util.TreeNode;
 
 public class MaxMinDepth {
 
@@ -25,17 +25,17 @@ public class MaxMinDepth {
 		Queue<TreeNode> queue = new LinkedList<>();
 		int res = 1;
 		queue.offer(root);
-		TreeNode rightmost = root;// ÕâÀïÓÃrightmostÀ´±ê¼Ç×îÓÒ½Úµã£¬ËüµÄ×ó¶ù×Ó»òÕßÓÒ¶ù×Ó¾ÍÊÇÏÂÒ»²ãµÄ×îÓÒ½Úµã
+		TreeNode rightmost = root;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rightmostï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò½Úµã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó»ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò½Úµï¿½
 		while (queue.size() != 0) {
 			TreeNode tmp = queue.poll();
 			if (tmp.left == null && tmp.right == null)
-				break;// ÕâÀïÖ»ÒªÓöµ½Ò»¸öÒ¶×Ó½áµã£¬¾ÍÍ£Ö¹±éÀú£¬ÕâÑùºóÃæµÄ¾Í¶¼²»ÓÃ¿´ÁË£¬½ÚÊ¡ÁËÊ±¼ä
+				break;// ï¿½ï¿½ï¿½ï¿½Ö»Òªï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò¶ï¿½Ó½ï¿½ã£¬ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾Í¶ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Ë£ï¿½ï¿½ï¿½Ê¡ï¿½ï¿½Ê±ï¿½ï¿½
 			if (tmp.left != null)
 				queue.offer(tmp.left);
 			if (tmp.right != null)
 				queue.offer(tmp.right);
 			if (tmp == rightmost) {
-				res += 1;// Ë³Àûµ½´ï×îÓÒ±ß£¬ÇÒ×îÓÒ±ßÕâ¸ö½áµã»¹ÓÐ×Ó½Úµã£¬ÄÇÃ´²ãÊý¿ÉÒÔ+1
+				res += 1;// Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ß£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã»¹ï¿½ï¿½ï¿½Ó½Úµã£¬ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½+1
 				rightmost = (tmp.right == null) ? tmp.left : tmp.right;
 			}
 		}

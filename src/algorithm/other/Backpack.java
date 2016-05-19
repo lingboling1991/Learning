@@ -2,21 +2,21 @@ package algorithm.other;
 
 public class Backpack {
 	// www.cnblogs.com/daoluanxiaozi/archive/2012/05/06/2486105.html
-	// ¼Ç×¡±í¸ñµÄÒâÒå
+	// ï¿½ï¿½×¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public static int zeroOne(int[] values, int[] weight, int capicity) {
 		int total = values.length;
-		int[][] tab = new int[total][capicity];// tab[³¢ÊÔµ½µÚ¼¸¼þÎïÆ·ÁË£¬ÕâÀïÊÇËûµÄ±àºÅ][°üÖÐÊ£ÓàÌå»ý0-15]
+		int[][] tab = new int[total][capicity];// tab[ï¿½ï¿½ï¿½Ôµï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½][ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½0-15]
 
-		// ³õÊ¼»¯£ºÊ£ÓàÌå»ý´Ó0ºÅÎïÆ·µÄÌå»ý£¬µ½±³°üµÄ×î´óÈÝ»ý£¬ÔÚÕâ¸ö·¶Î§ÀïµÄ°üÖÐÉÌÆ·×Ü¼ÛÖµ¶¼µÈÓÚµÚÒ»¼þÎïÆ·µÄ¼ÛÖµ
-		// µ¹×ÅÒ»ÐÐÒ»ÐÐÀ´ÌîÐ´µÄ
+		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ü¼ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Ä¼ï¿½Öµ
+		// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
 		for (int i = weight[0]; i < capicity; i++) {
 			tab[total - 1][i] = values[0];
 		}
 
-		// ´Ó1ºÅÎïÆ·¿ªÊ¼£¬±éÀúÃ¿Ò»¼þÎïÆ·
+		// ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿Ò»ï¿½ï¿½ï¿½ï¿½Æ·
 		for (int i = 1; i < total; i++) {
-			// Ã¿¼þÎïÆ·£¬´ÓËüµÄÌå»ý£¬µ½±³°üµÄ×î´óÈÝ»ý£¬¿´ÕâÐ©Çé¿öÏÂÊÇ×°½øÈ¥ºÃ»¹ÊÇ²»×°½øÈ¥ºÃ
+			// Ã¿ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½È¥ï¿½Ã»ï¿½ï¿½Ç²ï¿½×°ï¿½ï¿½È¥ï¿½ï¿½
 			for (int j = weight[i]; j < capicity; j++) {
 				tab[total - 1 - i][j] = Math.max(tab[total - i][j], values[i]
 						+ tab[total - i][j - weight[i]]);
@@ -31,8 +31,8 @@ public class Backpack {
 	// }
 
 	public static void main(String[] args) {
-		int[] values = { 12, 3, 10, 3, 6 };
-		int[] weight = { 5, 4, 7, 2, 6 };
+		int[] values = {12, 3, 10, 3, 6};
+		int[] weight = {5, 4, 7, 2, 6};
 		System.out.println(zeroOne(values, weight, 15));
 	}
 }

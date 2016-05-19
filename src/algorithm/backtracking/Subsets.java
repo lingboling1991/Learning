@@ -1,14 +1,13 @@
 package algorithm.backtracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import algorithm.util.Tools;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Subsets {
 
-	public static List<List<Integer>> res = new ArrayList<List<Integer>>();
+	public static List<List<Integer>> res = new ArrayList<>();
 
 	public static List<List<Integer>> subsets(int[] n) {
 		if (n.length == 0)
@@ -21,11 +20,11 @@ public class Subsets {
 					Tools.switchList(n, j, j + 1);
 				}
 			}
-		}// ÕâÑù¾Í¿ÉÒÔµ¹ÐòÀ´Õ¹Ê¾×Ó¼¯ÁË
+		}// ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½Õ¹Ê¾ï¿½Ó¼ï¿½ï¿½ï¿½
 		List<Integer> cur = new ArrayList<>();
 		helper(n, cur, 0);
 
-		res.add(new ArrayList<Integer>());// ¿Õ¼¯Ò²Ëã
+		res.add(new ArrayList<>());// ï¿½Õ¼ï¿½Ò²ï¿½ï¿½
 
 		return res;
 	}
@@ -36,16 +35,16 @@ public class Subsets {
 		}
 
 		for (int i = level; i < n.length; i++) {
-			cur.add(n[i]);// ×¢ÒâÕâÀï
+			cur.add(n[i]);// ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			List<Integer> tmp = Tools.copyList(cur);
 			res.add(tmp);
-			helper(n, cur, i + 1);// »¹ÓÐÕâÀï£¬ÊÇÓÃi¶ø²»ÊÇlevelÀ´½øÐÐÔËËã
+			helper(n, cur, i + 1);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï£¬ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½levelï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			cur.remove(cur.size() - 1);
 		}
 	}
 
 	public static void main(String[] args) {
-		int[] n = { 1, 2, 3, 2, 1, 5, 8, 6, 9, 5, 3, 7 };
+		int[] n = {1, 2, 3, 2, 1, 5, 8, 6, 9, 5, 3, 7};
 		List<List<Integer>> res = subsets(n);
 		System.out.println("as");
 	}

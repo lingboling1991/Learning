@@ -11,6 +11,7 @@ public class Quick {
 			int key = nums[left];// 基准数
 			int lp = left;// 左指针
 			int rp = right;// 右指针
+
 			while (lp < rp) {
 				while (nums[rp] >= key && lp < rp)
 					// 这里先移动rp，再移动lp，不然会排错
@@ -36,7 +37,7 @@ public class Quick {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 1, 2, 0, 2, 2, 2, 0, 0, 2, 1, 1 };
+		int[] nums = {1, 2, 0, 2, 2, 2, 0, 0, 2, 1, 1};
 		quick(nums);
 		System.out.println("a");
 	}

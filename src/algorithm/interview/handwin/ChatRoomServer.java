@@ -3,11 +3,7 @@ package algorithm.interview.handwin;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,38 +11,52 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * ÍøÂç¶à¿Í»§¶ËÁÄÌìÊÒ ¹¦ÄÜ1£º ¿Í»§¶ËÍ¨¹ıJava NIOÁ¬½Óµ½·şÎñ¶Ë£¬Ö§³Ö¶à¿Í»§¶ËµÄÁ¬½Ó
- * ¹¦ÄÜ2£º¿Í»§¶Ë³õ´ÎÁ¬½ÓÊ±£¬·şÎñ¶ËÌáÊ¾ÊäÈëêÇ³Æ£¬Èç¹ûêÇ³ÆÒÑ¾­ÓĞÈËÊ¹ÓÃ£¬ÌáÊ¾ÖØĞÂÊäÈë£¬Èç¹ûêÇ³ÆÎ¨Ò»£¬ÔòµÇÂ¼³É¹¦£¬Ö®ºó·¢ËÍÏûÏ¢¶¼ĞèÒª°´ÕÕ¹æ¶¨¸ñÊ½´ø×ÅêÇ³Æ·¢ËÍÏûÏ¢
- * ¹¦ÄÜ3£º¿Í»§¶ËµÇÂ¼ºó£¬·¢ËÍÒÑ¾­ÉèÖÃºÃµÄ»¶Ó­ĞÅÏ¢ºÍÔÚÏßÈËÊı¸ø¿Í»§¶Ë£¬²¢ÇÒÍ¨ÖªÆäËû¿Í»§¶Ë¸Ã¿Í»§¶ËÉÏÏß
- * ¹¦ÄÜ4£º·şÎñÆ÷ÊÕµ½ÒÑµÇÂ¼¿Í»§¶ËÊäÈëÄÚÈİ£¬×ª·¢ÖÁÆäËûµÇÂ¼¿Í»§¶Ë¡£
- * 
- * TODO ¿Í»§¶ËÏÂÏß¼ì²â
+ * ç½‘ç»œå¤šå®¢æˆ·ç«¯èŠå¤©å®¤
+ * åŠŸèƒ½1ï¼š å®¢æˆ·ç«¯é€šè¿‡Java NIOè¿æ¥åˆ°æœåŠ¡ç«¯ï¼Œæ”¯æŒå¤šå®¢æˆ·ç«¯çš„è¿æ¥
+ * åŠŸèƒ½2ï¼šå®¢æˆ·ç«¯åˆæ¬¡è¿æ¥æ—¶ï¼ŒæœåŠ¡ç«¯æç¤ºè¾“å…¥æ˜µç§°ï¼Œå¦‚æœæ˜µç§°å·²ç»æœ‰äººä½¿ç”¨ï¼Œæç¤ºé‡æ–°è¾“å…¥ï¼Œå¦‚æœæ˜µç§°å”¯ä¸€ï¼Œåˆ™ç™»å½•æˆåŠŸï¼Œä¹‹åå‘é€æ¶ˆæ¯éƒ½éœ€è¦æŒ‰ç…§è§„å®šæ ¼å¼å¸¦ç€æ˜µç§°å‘é€æ¶ˆæ¯
+ * åŠŸèƒ½3ï¼šå®¢æˆ·ç«¯ç™»å½•åï¼Œå‘é€å·²ç»è®¾ç½®å¥½çš„æ¬¢è¿ä¿¡æ¯å’Œåœ¨çº¿äººæ•°ç»™å®¢æˆ·ç«¯ï¼Œå¹¶ä¸”é€šçŸ¥å…¶ä»–å®¢æˆ·ç«¯è¯¥å®¢æˆ·ç«¯ä¸Šçº¿
+ * åŠŸèƒ½4ï¼šæœåŠ¡å™¨æ”¶åˆ°å·²ç™»å½•å®¢æˆ·ç«¯è¾“å…¥å†…å®¹ï¼Œè½¬å‘è‡³å…¶ä»–ç™»å½•å®¢æˆ·ç«¯ã€‚
+ * <p>
+ * TODO å®¢æˆ·ç«¯ä¸‹çº¿æ£€æµ‹
  */
 public class ChatRoomServer {
 
-	public static HashMap<SelectionKey, Long> activeTimer;// ¼ÇÂ¼ÉÏ´Î»î¶¯µÄÊ±¼ä
-
-	private Selector selector = null;
 	static final int port = 9999;
-
-	private Charset charset = Charset.forName("UTF-8");
-	private static HashSet<String> users = new HashSet<String>();// ÓÃÀ´¼ÇÂ¼ÔÚÏßÈËÊı£¬ÒÔ¼°êÇ³Æ
 	private static final String USER_EXIST = "system message: user exist, please change a name";
 	private static final String USER_CONTENT_SPILIT = "#@#";
 	private static final String CLIENT_QUIT = "client_quit";
-
+	public static HashMap<SelectionKey, Long> activeTimer;//ç”¨æ¥è®°å½•åœ¨çº¿äººæ•°ï¼Œä»¥åŠæ˜µç§°
+	private static HashSet<String> users = new HashSet<String>();//ç›¸å½“äºè‡ªå®šä¹‰åè®®æ ¼å¼ï¼Œä¸å®¢æˆ·ç«¯åå•†å¥½
 	private static boolean flag = false;
+	private Selector selector = null;
+	private Charset charset = Charset.forName("UTF-8");
+
+	// TODO è¦æ˜¯èƒ½æ£€æµ‹ä¸‹çº¿ï¼Œå°±ä¸ç”¨è¿™ä¹ˆç»Ÿè®¡äº†
+	public static int OnlineNum(Selector selector) {
+		int res = 0;
+		for (SelectionKey key : selector.keys()) {
+			Channel targetchannel = key.channel();
+
+			if (targetchannel instanceof SocketChannel) {
+				res++;
+			}
+		}
+		return res;
+	}
+
+	public static void main(String[] args) throws IOException {
+		new ChatRoomServer().init();
+	}
 
 	public void init() throws IOException {
-		// ¿ª±ÙÒ»¸öĞÂÏß³ÌÀ´¶ÁÈ¡´Ó·şÎñÆ÷¶ËµÄÊı¾İ
 		new Thread(new ActiveCheck()).start();
 
 		selector = Selector.open();
 		ServerSocketChannel ssc = ServerSocketChannel.open();
 		ssc.bind(new InetSocketAddress(port));
 
-		ssc.configureBlocking(false);// ·Ç×èÈûµÄ·½Ê½
-		ssc.register(selector, SelectionKey.OP_ACCEPT); // ×¢²áµ½Ñ¡ÔñÆ÷ÉÏ£¬ÉèÖÃÎª¼àÌı×´Ì¬
+		ssc.configureBlocking(false);//éé˜»å¡çš„æ–¹å¼
+		ssc.register(selector, SelectionKey.OP_ACCEPT);//æ³¨å†Œåˆ°é€‰æ‹©å™¨ä¸Šï¼Œè®¾ç½®ä¸ºç›‘å¬çŠ¶æ€
 
 		System.out.println("Server is listening now...");
 
@@ -54,12 +64,93 @@ public class ChatRoomServer {
 			int readyChannels = selector.select();
 			if (readyChannels == 0)
 				continue;
-			Set selectedKeys = selector.selectedKeys(); // ¿ÉÒÔÍ¨¹ıÕâ¸ö·½·¨£¬ÖªµÀ¿ÉÓÃÍ¨µÀµÄ¼¯ºÏ
+			Set selectedKeys = selector.selectedKeys();//å¯ä»¥é€šè¿‡è¿™ä¸ªæ–¹æ³•ï¼ŒçŸ¥é“å¯ç”¨é€šé“çš„é›†åˆ
 			Iterator keyIterator = selectedKeys.iterator();
 			while (keyIterator.hasNext()) {
 				SelectionKey sk = (SelectionKey) keyIterator.next();
 				keyIterator.remove();
 				dealWithSelectionKey(ssc, sk);
+			}
+		}
+	}
+
+	public void dealWithSelectionKey(ServerSocketChannel server, SelectionKey sk)
+			throws IOException {
+		if (sk.isAcceptable()) {
+			SocketChannel sc = server.accept();
+			activeTimer.put(sk, System.currentTimeMillis());
+
+			sc.configureBlocking(false);
+
+			//æ³¨å†Œé€‰æ‹©å™¨ï¼Œå¹¶è®¾ç½®ä¸ºè¯»å–æ¨¡å¼ï¼Œæ”¶åˆ°ä¸€ä¸ªè¿æ¥è¯·æ±‚ï¼Œç„¶åèµ·ä¸€ä¸ªSocketChannelï¼Œå¹¶æ³¨å†Œåˆ°selectorä¸Šï¼Œä¹‹åè¿™ä¸ªè¿æ¥çš„æ•°æ®ï¼Œå°±ç”±è¿™ä¸ªSocketChannelå¤„ç†
+			sc.register(selector, SelectionKey.OP_READ);
+			System.out.println("Server is listening from client :"
+					+ sc.getRemoteAddress());
+			sc.write(charset.encode("Please input your name."));
+		}
+		//å¤„ç†æ¥è‡ªå®¢æˆ·ç«¯çš„æ•°æ®è¯»å–è¯·æ±‚
+		else if (sk.isReadable()) {
+			//è¿”å›è¯¥SelectionKeyå¯¹åº”çš„ Channelï¼Œå…¶ä¸­æœ‰æ•°æ®éœ€è¦è¯»å–
+			activeTimer.put(sk, System.currentTimeMillis());
+			SocketChannel sc = (SocketChannel) sk.channel();
+			ByteBuffer buff = ByteBuffer.allocate(1024);
+			StringBuilder content = new StringBuilder();
+			try {
+				while (sc.read(buff) > 0) {
+					buff.flip();
+					content.append(charset.decode(buff));
+				}
+				System.out.println("Server is listening from client "
+						+ sc.getRemoteAddress() + " data rev is: " + content);
+				//å°†æ­¤å¯¹åº”çš„channelè®¾ç½®ä¸ºå‡†å¤‡ä¸‹ä¸€æ¬¡æ¥å—æ•°æ®
+				sk.interestOps(SelectionKey.OP_READ);
+			} catch (IOException io) {
+				sk.cancel();
+				if (sk.channel() != null) {
+					sk.channel().close();
+				}
+			}
+			if (content.length() > 0) {
+				String[] arrayContent = content.toString().split(
+						USER_CONTENT_SPILIT);
+				//æ³¨å†Œç”¨æˆ·
+				if (arrayContent.length == 1) {
+					String name = arrayContent[0];
+					if (users.contains(name)) {
+						sc.write(charset.encode(USER_EXIST));
+					} else {
+						users.add(name);
+						int num = OnlineNum(selector);
+						String message = "welcome " + name
+								+ " to chat room! Online numbers:" + num;
+						BroadCast(selector, null, message);
+					}
+				}
+				//æ³¨å†Œå®Œäº†ï¼Œå‘é€æ¶ˆæ¯
+				else if (arrayContent.length > 1) {
+					String name = arrayContent[0];
+					String message = content.substring(name.length()
+							+ USER_CONTENT_SPILIT.length());
+					message = name + " say " + message;
+					if (users.contains(name)) {
+						//ä¸å›å‘ç»™å‘é€æ­¤å†…å®¹çš„å®¢æˆ·ç«¯
+						BroadCast(selector, sc, message);
+					}
+				}
+			}
+		}
+	}
+
+	public void BroadCast(Selector selector, SocketChannel except,
+	                      String content) throws IOException {
+		//å¹¿æ’­æ•°æ®åˆ°æ‰€æœ‰çš„SocketChannelä¸­
+		for (SelectionKey key : selector.keys()) {
+			Channel targetchannel = key.channel();
+			//å¦‚æœexceptä¸ä¸ºç©ºï¼Œä¸å›å‘ç»™å‘é€æ­¤å†…å®¹çš„å®¢æˆ·ç«¯
+			if (targetchannel instanceof SocketChannel
+					&& targetchannel != except) {
+				SocketChannel dest = (SocketChannel) targetchannel;
+				dest.write(charset.encode(content));
 			}
 		}
 	}
@@ -75,13 +166,13 @@ public class ChatRoomServer {
 
 			for (SelectionKey tmpSk : activeTimer.keySet()) {
 				long res = System.currentTimeMillis() - activeTimer.get(tmpSk);
-				if (res > 60 * 1000) {// ³¬Ê±¾ÍÍË³ö
+				if (res > 60 * 1000) {
 					SocketChannel tmpSc = (SocketChannel) tmpSk.channel();
 					activeTimer.remove(tmpSk);
 					try {
-						sendQuitMsg(tmpSk);// ÈÃclientÒ²ÍË³ö
-						// BroadCast(selector, tmpSc, );// ¹ã²¥Í¨ÖªÆäËûÓÃ»§ÓĞÈËµôÏß
-						tmpSk.cancel();// ±¾µØÍË³öÁ¬½Ó
+						sendQuitMsg(tmpSk);
+						// BroadCast(selector, tmpSc, );
+						tmpSk.cancel();
 						tmpSc.close();
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -96,103 +187,5 @@ public class ChatRoomServer {
 			sc.write(charset.encode(line));
 		}
 
-	}
-
-	public void dealWithSelectionKey(ServerSocketChannel server, SelectionKey sk)
-			throws IOException {
-		if (sk.isAcceptable()) {
-			SocketChannel sc = server.accept();
-			activeTimer.put(sk, System.currentTimeMillis());
-			// ·Ç×èÈûÄ£Ê½
-			sc.configureBlocking(false);
-			// ×¢²áÑ¡ÔñÆ÷£¬²¢ÉèÖÃÎª¶ÁÈ¡Ä£Ê½£¬ÊÕµ½Ò»¸öÁ¬½ÓÇëÇó£¬È»ºóÆğÒ»¸öSocketChannel£¬²¢×¢²áµ½selectorÉÏ£¬Ö®ºóÕâ¸öÁ¬½ÓµÄÊı¾İ£¬¾ÍÓÉÕâ¸öSocketChannel´¦Àí
-			sc.register(selector, SelectionKey.OP_READ);
-
-			System.out.println("Server is listening from client :"
-					+ sc.getRemoteAddress());
-			sc.write(charset.encode("Please input your name."));
-		}
-		// ´¦ÀíÀ´×Ô¿Í»§¶ËµÄÊı¾İ¶ÁÈ¡ÇëÇó
-		else if (sk.isReadable()) {
-			// ·µ»Ø¸ÃSelectionKey¶ÔÓ¦µÄ Channel£¬ÆäÖĞÓĞÊı¾İĞèÒª¶ÁÈ¡
-			activeTimer.put(sk, System.currentTimeMillis());
-			SocketChannel sc = (SocketChannel) sk.channel();
-			ByteBuffer buff = ByteBuffer.allocate(1024);
-			StringBuilder content = new StringBuilder();
-			try {
-				while (sc.read(buff) > 0) {
-					buff.flip();
-					content.append(charset.decode(buff));
-				}
-				System.out.println("Server is listening from client "
-						+ sc.getRemoteAddress() + " data rev is: " + content);
-				// ½«´Ë¶ÔÓ¦µÄchannelÉèÖÃÎª×¼±¸ÏÂÒ»´Î½ÓÊÜÊı¾İ
-				sk.interestOps(SelectionKey.OP_READ);
-			} catch (IOException io) {
-				sk.cancel();
-				if (sk.channel() != null) {
-					sk.channel().close();
-				}
-			}
-			if (content.length() > 0) {
-				String[] arrayContent = content.toString().split(
-						USER_CONTENT_SPILIT);
-				// ×¢²áÓÃ»§
-				if (arrayContent != null && arrayContent.length == 1) {
-					String name = arrayContent[0];
-					if (users.contains(name)) {
-						sc.write(charset.encode(USER_EXIST));
-					} else {
-						users.add(name);
-						int num = OnlineNum(selector);
-						String message = "welcome " + name
-								+ " to chat room! Online numbers:" + num;
-						BroadCast(selector, null, message);
-					}
-				}
-				// ×¢²áÍêÁË£¬·¢ËÍÏûÏ¢
-				else if (arrayContent != null && arrayContent.length > 1) {
-					String name = arrayContent[0];
-					String message = content.substring(name.length()
-							+ USER_CONTENT_SPILIT.length());
-					message = name + " say " + message;
-					if (users.contains(name)) {
-						// ²»»Ø·¢¸ø·¢ËÍ´ËÄÚÈİµÄ¿Í»§¶Ë
-						BroadCast(selector, sc, message);
-					}
-				}
-			}
-		}
-	}
-
-	// TODO ÒªÊÇÄÜ¼ì²âÏÂÏß£¬¾Í²»ÓÃÕâÃ´Í³¼ÆÁË
-	public static int OnlineNum(Selector selector) {
-		int res = 0;
-		for (SelectionKey key : selector.keys()) {
-			Channel targetchannel = key.channel();
-
-			if (targetchannel instanceof SocketChannel) {
-				res++;
-			}
-		}
-		return res;
-	}
-
-	public void BroadCast(Selector selector, SocketChannel except,
-			String content) throws IOException {
-		// ¹ã²¥Êı¾İµ½ËùÓĞµÄSocketChannelÖĞ
-		for (SelectionKey key : selector.keys()) {
-			Channel targetchannel = key.channel();
-			// Èç¹ûexcept²»Îª¿Õ£¬²»»Ø·¢¸ø·¢ËÍ´ËÄÚÈİµÄ¿Í»§¶Ë
-			if (targetchannel instanceof SocketChannel
-					&& targetchannel != except) {
-				SocketChannel dest = (SocketChannel) targetchannel;
-				dest.write(charset.encode(content));
-			}
-		}
-	}
-
-	public static void main(String[] args) throws IOException {
-		new ChatRoomServer().init();
 	}
 }

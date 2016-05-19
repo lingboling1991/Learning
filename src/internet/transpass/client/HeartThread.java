@@ -1,6 +1,6 @@
 /**
  * HeartThread.java Nov 25, 2009
- * 
+ * <p>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.client;
@@ -10,8 +10,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 /**
- * ·¢ËÍÐÄÌø°üÏß³Ì
- * 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+ *
  * @author xwz
  * @version 1.0, Nov 25, 2009 11:33:59 PM
  */
