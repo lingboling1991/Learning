@@ -49,13 +49,13 @@ public class Receive_str_multi {
 
 				if (res.contains("!")) {
 					receive_end = System.currentTimeMillis();
-					
+
 					long time_res = receive_end - receive_start;
 
 					System.out.println("drop_packets == " + (num - counter));
 					System.out.println("total_time == " + time_res + ", drop_ratio == "
 							+ ((num - counter) / num) * 100 + "%");
-					
+
 					// break;
 				} else {
 					if (counter % 1000 == 0) {

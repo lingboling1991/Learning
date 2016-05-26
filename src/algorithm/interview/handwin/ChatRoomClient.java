@@ -13,14 +13,18 @@ import java.util.Set;
 
 public class ChatRoomClient {
 
-	private Selector selector = null;
 	static final int port = 9999;
-	private Charset charset = Charset.forName("UTF-8");
-	private SocketChannel sc = null;
-	private String name = "";
 	private static final String USER_EXIST = "system message: user exist, please change a name";
 	private static final String USER_CONTENT_SPILIT = "#@#";
 	private static final Object SYS_QUIT = "client_quit";
+	private Selector selector = null;
+	private Charset charset = Charset.forName("UTF-8");
+	private SocketChannel sc = null;
+	private String name = "";
+
+	public static void main(String[] args) throws IOException {
+		new ChatRoomClient().init();
+	}
 
 	public void init() throws IOException {
 		selector = Selector.open();
@@ -91,9 +95,5 @@ public class ChatRoomClient {
 				sk.interestOps(SelectionKey.OP_READ);
 			}
 		}
-	}
-
-	public static void main(String[] args) throws IOException {
-		new ChatRoomClient().init();
 	}
 }

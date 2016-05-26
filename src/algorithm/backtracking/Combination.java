@@ -1,12 +1,8 @@
 package algorithm.backtracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-
 import algorithm.util.Tools;
+
+import java.util.*;
 
 public class Combination {
 	// https://siddontang.gitbooks.io/leetcode-solution/content/backtracking/combination.html

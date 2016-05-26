@@ -1,14 +1,10 @@
 package internet.web_service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import org.apache.http.client.ClientProtocolException;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import org.apache.http.client.ClientProtocolException;
 
 public class Client {
 	public static void main(String[] args) throws ClientProtocolException,
@@ -17,7 +13,7 @@ public class Client {
 		String content = "qwertyu";
 
 		String sendString = requestGenerate(content);
-		String sendString_2 = requestGenerate_2(content);// ÕâÁ½¸öÉú³Éº¯Êı¶¼¿ÉÒÔ
+		String sendString_2 = requestGenerate_2(content);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		String target = "http://localhost:8888/cal";
 		URL url = new URL(target);
@@ -29,12 +25,12 @@ public class Client {
 		conn.setRequestProperty("content-type", "text/xml;charset=UTF-8");
 
 		conn.connect();
-		OutputStream os = conn.getOutputStream();// ÄÃµ½Êä³öÁ÷
+		OutputStream os = conn.getOutputStream();// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		os.write(sendString.getBytes("UTF-8"));
 		os.flush();
 		os.close();
 
-		InputStream is = conn.getInputStream();// ÄÃµ½ÊäÈëÁ÷£¬²»ÄÃÊäÈëÁ÷µÄ»°£¬¾Í²»ÄÜÍê³ÉÕû¸öPOSTÁ÷³Ì
+		InputStream is = conn.getInputStream();// ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½POSTï¿½ï¿½ï¿½ï¿½
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(isr);
 		String s = br.readLine();
@@ -56,7 +52,7 @@ public class Client {
 		contentBuilder.append("<soapenv:Body>");
 		contentBuilder
 				.append("<m:print xmlns:m=\"http://web_service.java_basic/\">");
-		contentBuilder.append("<xx>");// ÔÚCal½Ó¿ÚÖĞ¶¨ÒåµÄ²ÎÊıÃû×Ö
+		contentBuilder.append("<xx>");// ï¿½ï¿½Calï¿½Ó¿ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		contentBuilder.append(content);
 		contentBuilder.append("</xx>");
 		contentBuilder.append("</m:print>");
@@ -72,7 +68,7 @@ public class Client {
 		contentBuilder.append("<soap:Body>");
 		contentBuilder
 				.append("<m:print xmlns:m=\"http://web_service.java_basic/\">");
-		contentBuilder.append("<xx>");// ÔÚCal½Ó¿ÚÖĞ¶¨ÒåµÄ²ÎÊıÃû×Ö
+		contentBuilder.append("<xx>");// ï¿½ï¿½Calï¿½Ó¿ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		contentBuilder.append(content);
 		contentBuilder.append("</xx>");
 		contentBuilder.append("</m:print>");

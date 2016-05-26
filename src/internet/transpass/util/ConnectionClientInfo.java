@@ -1,13 +1,13 @@
 /**
  * ConnectionClientInfo.java Nov 25, 2009
- * 
+ * <p>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.util;
 
 /**
  * 需要保存的客户端信息
- * 
+ *
  * @author xwz
  * @version 1.0, Nov 25, 2009 9:54:45 PM
  */

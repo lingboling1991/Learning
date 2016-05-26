@@ -13,12 +13,12 @@ public class Java_watcher implements Observer {
 				+ "，他发来的改变量是：" + arg);
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

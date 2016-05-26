@@ -50,7 +50,7 @@ public class Insert {
 	}
 
 	public static void main(String[] args) {
-		int[] src = { 3, 1, 5, 7, 2, 4, 8, 6 };
+		int[] src = {3, 1, 5, 7, 2, 4, 8, 6};
 
 		int[] res = directInsert(src);
 		//

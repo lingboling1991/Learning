@@ -1,7 +1,7 @@
 package algorithm.other;
 
 public class PalindromicSubstring {
-	// 最长回文子串
+	// 锟筋长锟斤拷锟斤拷锟接达拷
 	public static String getLongest(String src) {
 		int start = 0, end = 0;
 
@@ -10,8 +10,8 @@ public class PalindromicSubstring {
 			int len2 = expanding(src, i, i + 1);
 			int len = Math.max(len1, len2);
 
-			if (len > end - start) {// 注意这里end - start是会比同样位置算出来的len小1的，因为[0,
-									// 2]实际上包括3个字符
+			if (len > end - start) {// 注锟斤拷锟斤拷锟斤拷end - start锟角伙拷锟酵拷锟轿伙拷锟斤拷锟斤拷锟斤拷锟斤拷len小1锟侥ｏ拷锟斤拷为[0,
+				// 2]实锟斤拷锟较帮拷锟斤拷3锟斤拷锟街凤拷
 				start = i - (len - 1) / 2;
 				end = i + len / 2;
 			}
@@ -27,7 +27,7 @@ public class PalindromicSubstring {
 			r += 1;
 		}
 
-		return r - l - 1;// 这里之所以要-1而不是+1，例如bcaad，此时l在c，r在d
+		return r - l - 1;// 锟斤拷锟斤拷之锟斤拷锟斤拷要-1锟斤拷锟斤拷锟斤拷+1锟斤拷锟斤拷锟斤拷bcaad锟斤拷锟斤拷时l锟斤拷c锟斤拷r锟斤拷d
 	}
 
 	public static void main(String[] args) {

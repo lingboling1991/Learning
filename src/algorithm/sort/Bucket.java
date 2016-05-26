@@ -7,17 +7,17 @@ import java.util.List;
 //http://www.cnblogs.com/kkun/archive/2011/11/23/bucket_sort.html
 
 public class Bucket {
-	// ÒÑÖªÆäÇø¼ä£¬ÀıÈç[1..10]£¬Ñ§ÉúµÄ·ÖÊı[0...100]µÈ£¬Èç¹û±È½ÏÊı¾İ·ÖÉ¢£¬¿ÉÒÔÓÃº¯ÊıÈ¡Ó³Éä×÷ÎªsortedÊı×éµÄÏÂ±ê
-	// Èç¹ûÓĞÖØ¸´µÄÊı×Ö,ÔòĞèÒª List<int>Êı×é£¬ÕâÀï¾ÙµÄÀı×ÓÃ»ÓĞÖØ¸´µÄÊı×Ö
+	// ï¿½ï¿½Öªï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½[1..10]ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½[0...100]ï¿½È£ï¿½ï¿½ï¿½ï¿½ï¿½È½ï¿½ï¿½ï¿½ï¿½İ·ï¿½É¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½È¡Ó³ï¿½ï¿½ï¿½ï¿½Îªsortedï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Òª List<int>ï¿½ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½Ùµï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public static List<Integer> bucket(int[] unsorted) {
 		int max = unsorted[0];
 		for (int i = 1; i < unsorted.length; i++) {
 			max = Math.max(max, unsorted[i]);
 		}
 
-		Integer[] sorted = new Integer[max + 1];// ÕâÀïÊÇÍ°ÓĞÈßÓà£¬¿ÉÒÔÓÃ¶şÎ¬Êı×é±íÊ¾Ò»´®ÈİÁ¿¹Ì¶¨µÄĞ¡Í°£¬¶øĞ¡Í°Àï»¹ĞèÒªÅÅĞò
+		Integer[] sorted = new Integer[max + 1];// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½Î¬ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Ğ¡Í°ï¿½ï¿½ï¿½ï¿½Ğ¡Í°ï¿½ï»¹ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 		for (int i = 0; i < unsorted.length; i++) {
-			sorted[unsorted[i]] = unsorted[i];// f(x)Ó³Éä£¬List<>·ÀÖØ¸´£¬¶¼ÔÚÕâÀï
+			sorted[unsorted[i]] = unsorted[i];// f(x)Ó³ï¿½ä£¬List<>ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}
 
 		List<Integer> res = new ArrayList<Integer>();
@@ -31,7 +31,7 @@ public class Bucket {
 	}
 
 	public static void main(String[] args) {
-		int[] src = { 9, 8, 4, 3, 2, 1, 7, 6, 5 };
+		int[] src = {9, 8, 4, 3, 2, 1, 7, 6, 5};
 		System.out.println(bucket(src).toString());
 	}
 }

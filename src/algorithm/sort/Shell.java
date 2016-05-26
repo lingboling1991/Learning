@@ -3,7 +3,7 @@ package algorithm.sort;
 //http://wuchong.me/blog/2014/02/09/algorithm-sort-summary/
 
 public class Shell {
-	// ²»ÎÈ¶¨£¬Æ½¾ùÊ±¼äO(nlogn)£¬¶îÍâ¿Õ¼äO(1)£¬nÐ¡Ê±½ÏºÃ
+	// ï¿½ï¿½ï¿½È¶ï¿½ï¿½ï¿½Æ½ï¿½ï¿½Ê±ï¿½ï¿½O(nlogn)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½O(1)ï¿½ï¿½nÐ¡Ê±ï¿½Ïºï¿½
 	public static int[] shellSort(int[] nums) {
 		int gap = nums.length / 2;
 
@@ -17,10 +17,10 @@ public class Shell {
 	public static void helper(int[] nums, int gap) {
 		for (int i = 0; i < gap; i++) {
 			for (int j = i + gap; j < nums.length; j += gap) {
-				if (nums[j] < nums[j - gap]) {// Ç°ÃæÊÇÓÐÐòµÄÐòÁÐ£¬Òò´ËÖ»ÒªºÍÇ°ÃæÐòÁÐµÄ×îºóÒ»¸ö±È½Ï¾Í¿ÉÒÔ
+				if (nums[j] < nums[j - gap]) {// Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Ö»Òªï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½È½Ï¾Í¿ï¿½ï¿½ï¿½
 					int temp = nums[j];
 					int k = j - gap;
-					while (k >= 0 && nums[k] > temp) {// ´ÓÕâÒ»ÁÐµÄ×îºóºóÍùÇ°£¬ÒÀ´ÎºÍtemp±È½Ï£¬±ÈËü´óµÄ¾ÍÍùºóÒÆ¶¯
+					while (k >= 0 && nums[k] > temp) {// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½tempï¿½È½Ï£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
 						nums[k + gap] = nums[k];
 						k -= gap;
 					}
@@ -31,7 +31,7 @@ public class Shell {
 	}
 
 	public static void main(String[] args) {
-		int[] nums = { 8, 6, 4, 2, 4, 6, 1, 11, 33, 22, 55, 44, 77, 99, 7, 5 };
+		int[] nums = {8, 6, 4, 2, 4, 6, 1, 11, 33, 22, 55, 44, 77, 99, 7, 5};
 		int gap = 5;
 		helper(nums, gap);
 	}

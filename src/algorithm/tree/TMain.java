@@ -19,23 +19,23 @@ public class TMain {
 		c.left = f;
 		c.right = g;
 
-		// ¶þ²æÅÅÐòÊ÷×ª»»ÎªË«ÏòÁ´±í
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªË«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Convert2Linkedlist.traversal(a);
 		Convert2Linkedlist.printHead();
 
-		// Ê÷ÖÐ¼ÛÖµ×î´óµÄÂ·¾¶£¬https://leetcode.com/problems/binary-tree-maximum-path-sum/
+		// ï¿½ï¿½ï¿½Ð¼ï¿½Öµï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½https://leetcode.com/problems/binary-tree-maximum-path-sum/
 		int maxPathSum = MaxPathSum.maxPathSum(a);
 		TreeNode upsideDown = UpsideDownBT.UpsideDownBinaryTree(a);
 
-		// ¶þ²æÊ÷×î´ó×îÐ¡Éî¶È
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½
 		int max = MaxMinDepth.maxDepth(a);
 		int min = MaxMinDepth.minDepthII(a);
 
-		// ÊÇ·ñÊÇÆ½ºâ¶þ²æÊ÷
+		// ï¿½Ç·ï¿½ï¿½ï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		boolean res = ValidateBalanced.isValid(a);
 
-		// Êý×é×ª»¯³É¶þ²æÅÅÐòÊ÷
-		int[] n = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+		// ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		int[] n = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 		TreeNode root = Convert2BST.fromSortedArray(n);
 
 		System.out.println(max + " " + min + " " + res + " " + maxPathSum);

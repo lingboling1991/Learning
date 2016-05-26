@@ -1,6 +1,5 @@
 package design_pattern.producer;
 
-import java.util.Date;
 import java.util.concurrent.BlockingQueue;
 
 public class Receiver implements Runnable {
@@ -13,7 +12,7 @@ public class Receiver implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {//Ã¿ÎåÃë¼ì²éÒ»´Î¶ÓÁÐ£¬ÓÐÄÚÈÝ¾Í¶Á³öÀ´
+		while (true) {//Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Î¶ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¾Í¶ï¿½ï¿½ï¿½ï¿½ï¿½
 			try {
 				String string = queue.take();
 				System.out.println(string);

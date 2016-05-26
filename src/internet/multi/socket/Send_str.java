@@ -1,13 +1,9 @@
 package internet.multi.socket;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.Inet6Address;
-import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Send_str {
 	private static long send_start;
@@ -24,13 +20,13 @@ public class Send_str {
 			// int num = 100000;
 
 			Inet6Address inetAddress = (Inet6Address) Inet6Address
-					.getByName("FF01:0000:0000:0000:0001:2345:6789:abcd");// ¸ù¾ÝÖ÷»úÃû·µ»ØÖ÷»úµÄIPµØÖ·
+					.getByName("FF01:0000:0000:0000:0001:2345:6789:abcd");// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½Ö·
 
 			byte[] msg = "ssssssssssssfffffffffdddddddddddddddddddddddddddddddddddddddddddddddddddddddffsddddddddddddd"
 					.getBytes();
 
 			DatagramPacket datagramPacket = new DatagramPacket(msg, msg.length,
-					inetAddress, 7777);// Êý¾Ý°ü°üº¬ÏûÏ¢ÄÚÈÝ£¬ÏûÏ¢³¤¶È£¬¶à²¥IPºÍ¶Ë¿Ú
+					inetAddress, 7777);// ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½È£ï¿½ï¿½à²¥IPï¿½Í¶Ë¿ï¿½
 
 			MulticastSocket multicastSocket = new MulticastSocket();
 			Socket s = new Socket();
@@ -50,7 +46,7 @@ public class Send_str {
 					send_end = System.currentTimeMillis();
 				}
 
-				multicastSocket.send(datagramPacket);// ·¢ËÍÊý¾Ý
+				multicastSocket.send(datagramPacket);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 				// int nullLoop = sleep_time;
 				// while (nullLoop > 0) {

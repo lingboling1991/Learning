@@ -1,7 +1,5 @@
 package sdn.route_cal;
 
-import sdn.route_cal.Dijkstra;
-
 import java.util.ArrayList;
 
 public class SDN_PubSub {
@@ -12,14 +10,14 @@ public class SDN_PubSub {
 	private static long interval;
 
 	public static ArrayList<int[]> getEachRoute(int[][] connected,
-			ArrayList<Integer> subers) {
+	                                            ArrayList<Integer> subers) {
 
 		start_time = System.currentTimeMillis();
 
 		int[][] weight = new int[connected.length][connected[0].length];
 		for (int i = 0; i < connected.length; i++) {
 			for (int j = 0; j < connected[0].length; j++) {
-				weight[i][j] = connected[i][j];// »á¸ü¸ÄconnectedµÄÖµ£¬ËùÒÔÐèÒªÔ¤ÏÈ´æÒ»·Ý
+				weight[i][j] = connected[i][j];// ï¿½ï¿½ï¿½ï¿½ï¿½connectedï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÔ¤ï¿½È´ï¿½Ò»ï¿½ï¿½
 			}
 		}
 
@@ -28,9 +26,9 @@ public class SDN_PubSub {
 		for (int k = 0; k < subers.size(); k++) {
 			int start = subers.get(k);
 
-			int[][] path = Dijkstra.getEachStop(connected, start);// path[i][j]µ½µÚi¸ö½ÚµãÂ·ÉÏµÄµÚjÌø
+			int[][] path = Dijkstra.getEachStop(connected, start);// path[i][j]ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Úµï¿½Â·ï¿½ÏµÄµï¿½jï¿½ï¿½
 			connected = weight;
-			int[] shortPath = Dijkstra.dijkstra(connected, start);// shortPath[i]µ½µÚi¸ö½ÚµãµÄ×Ü³¤¶È
+			int[] shortPath = Dijkstra.dijkstra(connected, start);// shortPath[i]ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½
 
 			int shortestPath = M;
 			int shortestPathNum = 0;
@@ -41,7 +39,7 @@ public class SDN_PubSub {
 				}
 			}
 
-			// £¡ÕâÀïÐèÒªÈ·±£ÓÐÖÁÉÙÒ»ÌõÁªÍ¨Â·
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÈ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Í¨Â·
 			int[] eachStop = path[shortestPathNum];
 			res.add(eachStop);
 		}
@@ -55,8 +53,8 @@ public class SDN_PubSub {
 
 	public static void main(String args[]) {
 
-		int[][] weight = { { 0, 10, M, 30, 100 }, { M, 0, 50, M, M },
-				{ M, M, 0, M, 10 }, { M, M, 20, 0, 60 }, { M, M, M, M, 0 } };
+		int[][] weight = {{0, 10, M, 30, 100}, {M, 0, 50, M, M},
+				{M, M, 0, M, 10}, {M, M, 20, 0, 60}, {M, M, M, M, 0}};
 
 		ArrayList<Integer> subers = new ArrayList<Integer>();
 		for (int i = 0; i < weight.length; i++) {

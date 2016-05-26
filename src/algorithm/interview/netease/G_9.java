@@ -22,7 +22,7 @@ public class G_9 {
 	}
 
 	public static void dfs(char[] ch, ArrayList<Character> t, int n,
-			List<List<String>> res, int level) {
+	                       List<List<String>> res, int level) {
 		if (t.size() == n) {
 			char[] x = new char[n];
 			for (int i = 0; i < t.size(); i++) {

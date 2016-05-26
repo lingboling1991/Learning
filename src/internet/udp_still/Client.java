@@ -1,11 +1,7 @@
 package internet.udp_still;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.*;
 
 public class Client {
 
@@ -24,7 +20,7 @@ public class Client {
 			System.out.println("Cannot open port!");
 		}
 
-		byte[] buf = "´Óclient·¢À´".getBytes();
+		byte[] buf = "ï¿½ï¿½clientï¿½ï¿½ï¿½ï¿½".getBytes();
 		InetAddress destination = null;
 		try {
 			destination = InetAddress.getByName(serverIP);
@@ -36,13 +32,13 @@ public class Client {
 
 		ds.send(dp);
 //		ds.close();
-		
+
 		buf = new byte[1024];
 		dp = new DatagramPacket(buf, 0, buf.length);
 		ds.receive(dp);
 		String data = new String(dp.getData(), 0, dp.getLength());
-		System.out.println("clientÊÕµ½ÁË" + data);
-		System.out.println("·þÎñÆ÷µØÖ·"+dp.getAddress().toString()+"!!!"+"·þÎñÆ÷¶Ë¿Ú"+dp.getPort());
+		System.out.println("clientï¿½Õµï¿½ï¿½ï¿½" + data);
+		System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·" + dp.getAddress().toString() + "!!!" + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½" + dp.getPort());
 
 
 		ds.close();

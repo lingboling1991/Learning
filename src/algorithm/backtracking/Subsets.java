@@ -1,10 +1,9 @@
 package algorithm.backtracking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import algorithm.util.Tools;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Subsets {
 
@@ -45,7 +44,7 @@ public class Subsets {
 	}
 
 	public static void main(String[] args) {
-		int[] n = { 1, 2, 3, 2, 1, 5, 8, 6, 9, 5, 3, 7 };
+		int[] n = {1, 2, 3, 2, 1, 5, 8, 6, 9, 5, 3, 7};
 		List<List<Integer>> res = subsets(n);
 		System.out.println("as");
 	}

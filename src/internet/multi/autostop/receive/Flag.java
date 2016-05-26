@@ -2,9 +2,8 @@ package internet.multi.autostop.receive;
 
 public class Flag {
 
-	private boolean stop;
-
 	private static Flag f = new Flag();
+	private boolean stop;
 
 	private Flag() {
 	}

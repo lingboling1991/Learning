@@ -1,39 +1,40 @@
 package internet.tcp;
 
-import java.io.*;
-import java.net.*;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 
 public class MulSocketClient {
 	public static void main(String[] args) {
 		Socket socket = null;
 		InputStream is = null;
 		OutputStream os = null;
-		// ·þÎñÆ÷¶ËIPµØÖ·
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½Ö·
 		String serverIP = "localhost";
-		// ·þÎñÆ÷¶Ë¶Ë¿ÚºÅ
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶Ë¿Úºï¿½
 		int port = 7777;
-		// ·¢ËÍÄÚÈÝ
-		String data[] = { "First", "Second", "Third" };
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		String data[] = {"First", "Second", "Third"};
 		try {
-			// ½¨Á¢Á¬½Ó
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			socket = new Socket(serverIP, port);
-			// ³õÊ¼»¯Á÷
+			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 			os = socket.getOutputStream();
 			is = socket.getInputStream();
 			byte[] b = new byte[1024];
 			for (int i = 0; i < data.length; i++) {
-				// ·¢ËÍÊý¾Ý
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				os.write(data[i].getBytes());
-				// ½ÓÊÕÊý¾Ý
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int n = is.read(b);
-				// Êä³ö·´À¡Êý¾Ý
-				System.out.println("·þÎñÆ÷·´À¡£º" + new String(b, 0, n));
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + new String(b, 0, n));
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ´òÓ¡Òì³£ÐÅÏ¢
+			e.printStackTrace(); // ï¿½ï¿½Ó¡ï¿½ì³£ï¿½ï¿½Ï¢
 		} finally {
 			try {
-				// ¹Ø±ÕÁ÷ºÍÁ¬½Ó
+				// ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				is.close();
 				os.close();
 				socket.close();
