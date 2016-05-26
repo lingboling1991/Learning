@@ -25,7 +25,7 @@ public class Combination {
 	}
 
 	public static void combineHelper(List<List<Integer>> res,
-			List<Integer> cur, int n, int k, int level) {
+	                                 List<Integer> cur, int n, int k, int level) {
 		if (cur.size() == k) {// 注意这里用cur.size()而不是level来判断是否到了边界
 			List<Integer> tmp = Tools.copyList(cur);
 			res.add(tmp);
@@ -62,7 +62,7 @@ public class Combination {
 	}
 
 	public static void combineSumHelper(List<List<Integer>> res,
-			List<Integer> cur, int[] n, int k, int level) {
+	                                    List<Integer> cur, int[] n, int k, int level) {
 		if (k < 0) {
 			return;
 		} else if (k == 0) {
