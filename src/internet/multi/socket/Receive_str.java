@@ -25,10 +25,10 @@ public class Receive_str {
 			byte[] data = new byte[100];
 
 			// MulticastSocket multicastSocket = new MulticastSocket(new
-			// InetSocketAddress(localAddr,7777));// �����ಥ�׽��ֲ��󶨵����Ͷ˿�
-			MulticastSocket multicastSocket = new MulticastSocket(7777);// �����ಥ�׽��ֲ��󶨵����Ͷ˿�
+			// InetSocketAddress(localAddr,7777));
+			MulticastSocket multicastSocket = new MulticastSocket(7777);
 
-			multicastSocket.joinGroup(inetAddress);// �ಥ�׽��ּ���ಥ��
+			multicastSocket.joinGroup(inetAddress);
 			multicastSocket.setReceiveBufferSize(100 * 1024 * 1024);
 
 			long receive_start = 0;
@@ -37,8 +37,8 @@ public class Receive_str {
 			System.out.println("start listening");
 			while (true) {
 				DatagramPacket datagramPacket = new DatagramPacket(data,
-						data.length);// ����һ�����ڽ������ݵ����ݰ�
-				multicastSocket.receive(datagramPacket);// �������ݰ�
+						data.length);
+				multicastSocket.receive(datagramPacket);
 
 				if (counter == 0) {
 					receive_start = System.currentTimeMillis();
