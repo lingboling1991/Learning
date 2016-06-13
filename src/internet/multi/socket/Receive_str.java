@@ -36,8 +36,7 @@ public class Receive_str {
 
 			System.out.println("start listening");
 			while (true) {
-				DatagramPacket datagramPacket = new DatagramPacket(data,
-						data.length);
+				DatagramPacket datagramPacket = new DatagramPacket(data, data.length);
 				multicastSocket.receive(datagramPacket);
 
 				if (counter == 0) {
