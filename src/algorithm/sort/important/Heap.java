@@ -31,19 +31,18 @@ public class Heap {
 
 	protected static void build(int[] nums) {
 		for (int i = parent(heapsize - 1); i >= 0; i--)
-			// 从最后一个节点的
+			// 从最后一个节点的父节点开始，一直到根节点
 			heapify(nums, i);
 	}
 
 	protected static void heapify(int[] nums, int i) {
 		// 建一个大顶堆（即根元素是最小的）
-		// ���ѻ�����float down�������Ǽ�����nums[l]��nums[r]Ϊ���ڵ�������������ѣ�
-		// �Ѷ��ߵĸ��ڵ���Լ���ȣ��������ķ����棬���Ų���������ĳ���㣬���ٶ��������������д���
+		// 和左右子节点比大小，把大的换上去
 		int l = left(i);
 		int r = right(i);
 		int largest = i;
 
-		if (l < heapsize && nums[l] > nums[i])
+		if (l < heapsize && nums[l] > nums[largest])
 			largest = l;
 
 		if (r < heapsize && nums[r] > nums[largest])
@@ -53,7 +52,7 @@ public class Heap {
 			int x = nums[i];
 			nums[i] = nums[largest];
 			nums[largest] = x;
-
+			//largest这个时候是一个坐标
 			heapify(nums, largest);
 		}
 

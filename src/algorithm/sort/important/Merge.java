@@ -1,7 +1,7 @@
 package algorithm.sort.important;
 
 public class Merge {
-	// �ȶ���ƽ��ʱ��O(nlogn)������ռ�O(n)��n��ʱЧ�ʽϸߣ�����Ҫ���ڴ�
+	// 平均时间复杂度O(nlogn)，辅助空间O(n)，稳定
 	public static void mergeSort(int[] nums) {
 		sort(nums, 0, nums.length - 1);
 	}
@@ -9,7 +9,6 @@ public class Merge {
 	public static void sort(int[] nums, int left, int right) {
 		if (left < right) {
 			int mid = (left + right) / 2;
-			// ��·�鲢��������������Sort����·�鲢��������д���Sort�Ϳ�����
 			sort(nums, left, mid);
 			sort(nums, mid + 1, right);
 			merge(nums, left, mid, right);
@@ -20,7 +19,6 @@ public class Merge {
 		int[] tmp = new int[nums.length];
 		int tstart = left;
 
-		// ����ֻ��Ϊ�˱��������д��ʱ����Ҫ��ô����
 		int lstart = left;
 		int lstop = mid;
 		int rstart = mid + 1;
