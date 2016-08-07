@@ -17,25 +17,26 @@ public class Merge {
 
 	public static void merge(int[] nums, int left, int mid, int right) {
 		int[] tmp = new int[nums.length];
-		int tstart = left;
+		int t_start = left;
 
-		int lstart = left;
-		int lstop = mid;
-		int rstart = mid + 1;
-		int rstop = right;
+		int l_start = left;
+		int l_stop = mid;
+		int r_start = mid + 1;
+		int r_stop = right;
 
-		while (lstart <= lstop && rstart <= rstop) {
-			if (nums[lstart] <= nums[rstart])
-				tmp[tstart++] = nums[lstart++];
+		while (l_start <= l_stop && r_start <= r_stop) {
+			if (nums[l_start] <= nums[r_start])
+				tmp[t_start++] = nums[l_start++];
 			else
-				tmp[tstart++] = nums[rstart++];
+				tmp[t_start++] = nums[r_start++];
 		}
 
-		while (lstart <= lstop)
-			tmp[tstart++] = nums[lstart++];
-		while (rstart <= rstop)
-			tmp[tstart++] = nums[rstart++];
+		while (l_start <= l_stop)
+			tmp[t_start++] = nums[l_start++];
+		while (r_start <= r_stop)
+			tmp[t_start++] = nums[r_start++];
 
+		//merge的结果，先在tmp里保存，再全抄回nums
 		while (left <= right) {
 			nums[left] = tmp[left];
 			left++;

@@ -1,14 +1,17 @@
 package algorithm.sort;
 
 public class Bubble {
-	// �ȶ���ƽ��ʱ��O(n^2)������ռ�O(1)��nСʱ�Ϻ�
+	// 平均时间复杂度O(n^2)，辅助空间O(1)，稳定
 	public static void bubble(int[] nums) {
-		for (int i = 0; i < nums.length - 1; i++) {// ��������n������Ҫ�Ƚ�n-1��
-			for (int j = 0; j < nums.length - 1 - i; j++) {// ÿ��ѭ��,��Ҫ�Ƚ�n-i-1�Σ�ÿ��j<nums.length-1-i����Ҫ-i,
-				if (nums[j] > nums[j + 1]) {// �����ĳ������ұ�
+		if (nums == null || nums.length == 0)
+			return;
+
+		for (int i = 0; i < nums.length - 1; i++) {
+			for (int j = nums.length - 1; j > i; j--) {
+				if (nums[j] < nums[j - 1]) {
 					int tmp = nums[j];
-					nums[j] = nums[j + 1];
-					nums[j + 1] = tmp;
+					nums[j] = nums[j - 1];
+					nums[j - 1] = tmp;
 				}
 			}
 		}

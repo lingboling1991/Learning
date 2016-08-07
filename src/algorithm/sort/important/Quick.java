@@ -1,21 +1,24 @@
 package algorithm.sort.important;
 
+//http://www.codeceo.com/article/10-sort-algorithm-interview.html
+
 public class Quick {
-	// ���ȶ���ƽ��ʱ��O(nlogn)������ռ�O(nlogn)��ͨ����������������ѡ����Ϊ�����ڱȽϵ��������Ҳֻ�ܴﵽO��nlogn��
+	// 最好和平均时间复杂度O(nlogn)，最坏O(n^2)，辅助空间O(logn)~~O(n)，基于比较的排序的时间复杂度最优就是O(nlogn)，不稳定
 	public static void quick(int[] nums) {
-		helper(nums, 0, nums.length - 1);
+		quickHelp(nums, 0, nums.length - 1);
 	}
 
-	public static void helper(int[] nums, int left, int right) {
+	private static void quickHelp(int[] nums, int left, int right) {
+		//结果获得升序序列
 		if (left < right) {
-			int key = nums[left];// ��׼��
-			int lp = left;// ��ָ��
-			int rp = right;// ��ָ��
+			int flag = nums[left];//是值，不是坐标
+			int lp = left;
+			int rp = right;
 			while (lp < rp) {
-				while (nums[rp] >= key && lp < rp)
-					// �������ƶ�rp�����ƶ�lp����Ȼ���Ŵ�
+				//注意这里是rp先动，不然结果会错，说明参考上面网址
+				while (nums[rp] >= flag && lp < rp)
 					rp -= 1;
-				while (nums[lp] <= key && lp < rp)
+				while (nums[lp] <= flag && lp < rp)
 					lp += 1;
 				if (lp != rp) {
 					int t = nums[lp];
@@ -23,15 +26,14 @@ public class Quick {
 					nums[rp] = t;
 				}
 			}
-			// ��Ϊ�ǰѱ�keyС����ǰ�ţ���key�������ţ���ô���lp==rp��ʱ��lp��Ӧ��ָ���м�λ�ã���ʱ�ٰ�key�������м�
+
 			int t = nums[left];
 			nums[left] = nums[lp];
 			nums[lp] = t;
 
-			// ע����ʱlp��rpλ��û�䣬ֻ��ָ�ŵ�ֵ����
-			// �ٶ���������ݹ�ִ�У�ֱ��������ֻ��һ����
-			helper(nums, left, lp - 1);
-			helper(nums, rp + 1, right);// ����ֻ��Ϊ�˷�����⣬��ʱlp��rpӦ������ͬһ��λ�õ�
+			//此时，lp和rp相等
+			quickHelp(nums, left, lp - 1);
+			quickHelp(nums, rp + 1, right);
 		}
 	}
 

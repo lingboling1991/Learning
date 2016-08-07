@@ -7,16 +7,11 @@ public class Heap {
 
 	static int heapsize;
 
-	public static void main(String[] args) {
-		int[] nums = {9, 7, 3, 1, 6, 8, 2, 4, 5};
-		heapsize = nums.length;
-		heap(nums);
-
-		System.out.println("a");
-	}
-
 	public static void heap(int[] nums) {
+		heapsize = nums.length;
+
 		build(nums);
+
 		for (int i = nums.length - 1; i >= 1; i--) {
 			//为了最后结果是升序的
 			int x = nums[i];
@@ -29,13 +24,13 @@ public class Heap {
 		}
 	}
 
-	protected static void build(int[] nums) {
+	private static void build(int[] nums) {
 		for (int i = parent(heapsize - 1); i >= 0; i--)
 			// 从最后一个节点的父节点开始，一直到根节点
 			heapify(nums, i);
 	}
 
-	protected static void heapify(int[] nums, int i) {
+	private static void heapify(int[] nums, int i) {
 		// 建一个大顶堆（即根元素是最小的）
 		// 和左右子节点比大小，把大的换上去
 		int l = left(i);
@@ -58,15 +53,21 @@ public class Heap {
 
 	}
 
-	protected static int parent(int i) {
+	private static int parent(int i) {
 		return (i - 1) / 2;
 	}
 
-	protected static int left(int i) {
+	private static int left(int i) {
 		return 2 * i + 1;
 	}
 
-	protected static int right(int i) {
+	private static int right(int i) {
 		return 2 * i + 2;
+	}
+
+	public static void main(String[] args) {
+		int[] nums = {9, 7, 3, 1, 6, 8, 2, 4, 5};
+		heap(nums);
+		System.out.println("a");
 	}
 }
