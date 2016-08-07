@@ -20,11 +20,11 @@ public class Subsets {
 					Tools.switchList(n, j, j + 1);
 				}
 			}
-		}// ÕâÑù¾Í¿ÉÒÔµ¹ĞòÀ´Õ¹Ê¾×Ó¼¯ÁË
+		}// è¿™æ ·å°±å¯ä»¥å€’åºæ¥å±•ç¤ºå­é›†äº†
 		List<Integer> cur = new ArrayList<Integer>();
 		helper(n, cur, 0);
 
-		res.add(new ArrayList<Integer>());// ¿Õ¼¯Ò²Ëã
+		res.add(new ArrayList<Integer>());// ç©ºé›†ä¹Ÿç®—
 
 		return res;
 	}
@@ -35,10 +35,10 @@ public class Subsets {
 		}
 
 		for (int i = level; i < n.length; i++) {
-			cur.add(n[i]);// ×¢ÒâÕâÀï
+			cur.add(n[i]);// æ³¨æ„è¿™é‡Œ
 			List<Integer> tmp = Tools.copyList(cur);
 			res.add(tmp);
-			helper(n, cur, i + 1);// »¹ÓĞÕâÀï£¬ÊÇÓÃi¶ø²»ÊÇlevelÀ´½øĞĞÔËËã
+			helper(n, cur, i + 1);// è¿˜æœ‰è¿™é‡Œï¼Œæ˜¯ç”¨iè€Œä¸æ˜¯levelæ¥è¿›è¡Œè¿ç®—
 			cur.remove(cur.size() - 1);
 		}
 	}

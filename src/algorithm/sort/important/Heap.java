@@ -3,7 +3,7 @@ package algorithm.sort.important;
 //http://www.cnblogs.com/jetpie/p/3971382.html
 
 public class Heap {
-	// ��top K������ʹ�ñȽ�Ƶ�������ȶ���ƽ��ʱ��O(nlogn)������ռ�O(1)����������ӻ�������
+	// 解决top k问题，时间复杂度最好最坏和平均都是O(nlogn)，额外空间O(1)，不稳定
 
 	static int heapsize;
 
@@ -18,7 +18,7 @@ public class Heap {
 	public static void heap(int[] nums) {
 		build(nums);
 		for (int i = nums.length - 1; i >= 1; i--) {
-			// �����ķŵ����ȥ�������ͱ�ɽ���������
+			//为了最后结果是升序的
 			int x = nums[i];
 			nums[i] = nums[0];
 			nums[0] = x;
@@ -31,11 +31,12 @@ public class Heap {
 
 	protected static void build(int[] nums) {
 		for (int i = parent(heapsize - 1); i >= 0; i--)
-			// �����һ���ڵ�ĸ��ڵ㿪ʼ�������Ͻ��в���
+			// 从最后一个节点的
 			heapify(nums, i);
 	}
 
 	protected static void heapify(int[] nums, int i) {
+		// 建一个大顶堆（即根元素是最小的）
 		// ���ѻ�����float down�������Ǽ�����nums[l]��nums[r]Ϊ���ڵ�������������ѣ�
 		// �Ѷ��ߵĸ��ڵ���Լ���ȣ��������ķ����棬���Ų���������ĳ���㣬���ٶ��������������д���
 		int l = left(i);

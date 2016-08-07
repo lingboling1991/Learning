@@ -22,7 +22,7 @@ public class Combination {
 
 	public static void combineHelper(List<List<Integer>> res,
 	                                 List<Integer> cur, int n, int k, int level) {
-		if (cur.size() == k) {// ×¢ÒâÕâÀïÓÃcur.size()¶ø²»ÊÇlevelÀ´ÅĞ¶ÏÊÇ·ñµ½ÁË±ß½ç
+		if (cur.size() == k) {// æ³¨æ„è¿™é‡Œç”¨cur.size()è€Œä¸æ˜¯levelæ¥åˆ¤æ–­æ˜¯å¦åˆ°äº†è¾¹ç•Œ
 			List<Integer> tmp = Tools.copyList(cur);
 			res.add(tmp);
 			return;
@@ -42,7 +42,7 @@ public class Combination {
 			return res;
 
 		List<Integer> cur = new ArrayList<Integer>();
-		Arrays.sort(n);// ÕâÀïĞèÒªÅÅĞò£¬ÊÇÒòÎª½á¹ûÒªÇóÉıĞò
+		Arrays.sort(n);// è¿™é‡Œéœ€è¦æ’åºï¼Œæ˜¯å› ä¸ºç»“æœè¦æ±‚å‡åº
 		combineSumHelper(res, cur, n, k, 0);
 
 		List<List<Integer>> fin = new ArrayList<List<Integer>>();
@@ -70,7 +70,7 @@ public class Combination {
 		for (int i = level; i < n.length; i++) {
 			cur.add(n[i]);
 			k -= n[i];
-			combineSumHelper(res, cur, n, k, level + 1);// ÕâÀï¸Ä³Élevel£¬¾ÍÊÇ±íÊ¾¿ÉÒÔÖØ¸´Ê¹ÓÃÄ³¸öÊı×Ö
+			combineSumHelper(res, cur, n, k, level + 1);// è¿™é‡Œæ”¹æˆlevelï¼Œå°±æ˜¯è¡¨ç¤ºå¯ä»¥é‡å¤ä½¿ç”¨æŸä¸ªæ•°å­—
 			cur.remove(cur.size() - 1);
 			k += n[i];
 		}

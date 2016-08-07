@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/src/algorithm/backtracking/Combination.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/algorithm/backtracking/Subsets.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/algorithm/backtracking/Combination.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/algorithm/backtracking/Subsets.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/algorithm/interview/handwin/ChatRoomClient.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/algorithm/sort/Insert.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/algorithm/sort/Insert.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/design_pattern/observer/java_inside/Java_watcher.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/internet/multi/socket/Receive_str_multi.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/internet/transpass/util/ConnectionClientInfo.java" charset="GBK" />
