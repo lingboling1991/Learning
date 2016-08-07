@@ -25,10 +25,10 @@ public class Receive_str_multi {
 			byte[] data = new byte[100];
 
 			// MulticastSocket multicastSocket = new MulticastSocket(new
-			// InetSocketAddress(localAddr,7777));// 创建多播套接字并绑定到发送端口
-			MulticastSocket multicastSocket = new MulticastSocket(7777);// 创建多播套接字并绑定到发送端口
+			// InetSocketAddress(localAddr,7777));
+			MulticastSocket multicastSocket = new MulticastSocket(7777);
 
-			multicastSocket.joinGroup(inetAddress);// 多播套接字加入多播组
+			multicastSocket.joinGroup(inetAddress);
 			multicastSocket.setReceiveBufferSize(100 * 1024 * 1024);
 
 			long receive_start = 0;
@@ -37,8 +37,8 @@ public class Receive_str_multi {
 			System.out.println("start listening");
 			while (true) {
 				DatagramPacket datagramPacket = new DatagramPacket(data,
-						data.length);// 创建一个用于接收数据的数据包
-				multicastSocket.receive(datagramPacket);// 接收数据包
+						data.length);
+				multicastSocket.receive(datagramPacket);
 
 				if (counter == 0) {
 					receive_start = System.currentTimeMillis();
@@ -53,8 +53,9 @@ public class Receive_str_multi {
 					long time_res = receive_end - receive_start;
 
 					System.out.println("drop_packets == " + (num - counter));
-					System.out.println("total_time == " + time_res + ", drop_ratio == "
-							+ ((num - counter) / num) * 100 + "%");
+					System.out.println("total_time == " + time_res
+							+ ", drop_ratio == " + ((num - counter) / num)
+							* 100 + "%");
 
 					// break;
 				} else {

@@ -9,8 +9,8 @@ public class Java_watcher implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("我的名字是：" + name + "，我正在观察：" + o.getClass().getName()
-				+ "，他发来的改变量是：" + arg);
+		System.out.println("锟揭碉拷锟斤拷锟斤拷锟角ｏ拷" + name + "锟斤拷锟斤拷锟斤拷锟节观察：" + o.getClass().getName()
+				+ "锟斤拷锟斤拷锟斤拷锟斤拷锟侥改憋拷锟斤拷锟角ｏ拷" + arg);
 	}
 
 	public String getName() {

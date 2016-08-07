@@ -1,6 +1,6 @@
 /**
  * MyProtocol.java Nov 25, 2009
- * <p>
+ * <p/>
  * Copyright 2009 xwz, Inc. All rights reserved.
  */
 package internet.transpass.util;

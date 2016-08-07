@@ -20,13 +20,13 @@ public class Send_str {
 			// int num = 100000;
 
 			Inet6Address inetAddress = (Inet6Address) Inet6Address
-					.getByName("FF01:0000:0000:0000:0001:2345:6789:abcd");// ��������������������IP��ַ
+					.getByName("FF01:0000:0000:0000:0001:2345:6789:abcd");
 
 			byte[] msg = "ssssssssssssfffffffffdddddddddddddddddddddddddddddddddddddddddddddddddddddddffsddddddddddddd"
 					.getBytes();
 
 			DatagramPacket datagramPacket = new DatagramPacket(msg, msg.length,
-					inetAddress, 7777);// ���ݰ�������Ϣ���ݣ���Ϣ���ȣ��ಥIP�Ͷ˿�
+					inetAddress, 7777);
 
 			MulticastSocket multicastSocket = new MulticastSocket();
 			Socket s = new Socket();
@@ -46,7 +46,7 @@ public class Send_str {
 					send_end = System.currentTimeMillis();
 				}
 
-				multicastSocket.send(datagramPacket);// ��������
+				multicastSocket.send(datagramPacket);
 
 				// int nullLoop = sleep_time;
 				// while (nullLoop > 0) {

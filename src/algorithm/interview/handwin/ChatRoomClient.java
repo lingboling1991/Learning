@@ -28,25 +28,25 @@ public class ChatRoomClient {
 
 	public void init() throws IOException {
 		selector = Selector.open();
-		// Á¬½ÓÔ¶³ÌÖ÷»úµÄIPºÍ¶Ë¿Ú
+		// ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½Í¶Ë¿ï¿½
 		sc = SocketChannel.open(new InetSocketAddress("127.0.0.1", port));
 		sc.configureBlocking(false);
 		sc.register(selector, SelectionKey.OP_READ);
-		// ¿ª±ÙÒ»¸öÐÂÏß³ÌÀ´¶ÁÈ¡´Ó·þÎñÆ÷¶ËµÄÊý¾Ý
+		// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½
 		new Thread(new ClientThread()).start();
-		// ÔÚÖ÷Ïß³ÌÖÐ ´Ó¼üÅÌ¶ÁÈ¡Êý¾ÝÊäÈëµ½·þÎñÆ÷¶Ë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ï¿½Ì¶ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Scanner scan = new Scanner(System.in);
 		while (scan.hasNextLine()) {
 			String line = scan.nextLine();
 			if ("".equals(line))
-				continue; // ²»ÔÊÐí·¢¿ÕÏûÏ¢
+				continue; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 			if ("".equals(name)) {
 				name = line;
 				line = name + USER_CONTENT_SPILIT;
 			} else {
 				line = name + USER_CONTENT_SPILIT + line;
 			}
-			sc.write(charset.encode(line));// sc¼ÈÄÜÐ´Ò²ÄÜ¶Á£¬Õâ±ßÊÇÐ´
+			sc.write(charset.encode(line));// scï¿½ï¿½ï¿½ï¿½Ð´Ò²ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´
 		}
 
 	}
@@ -59,7 +59,7 @@ public class ChatRoomClient {
 					int readyChannels = selector.select();
 					if (readyChannels == 0)
 						continue;
-					Set selectedKeys = selector.selectedKeys(); // ¿ÉÒÔÍ¨¹ýÕâ¸ö·½·¨£¬ÖªµÀ¿ÉÓÃÍ¨µÀµÄ¼¯ºÏ
+					Set selectedKeys = selector.selectedKeys(); // ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 					Iterator keyIterator = selectedKeys.iterator();
 					while (keyIterator.hasNext()) {
 						SelectionKey sk = (SelectionKey) keyIterator.next();
@@ -67,14 +67,14 @@ public class ChatRoomClient {
 						dealWithSelectionKey(sk);
 					}
 				}
-			} catch (IOException ignored) {
+			} catch (IOException io) {
 			}
 		}
 
 		private void dealWithSelectionKey(SelectionKey sk) throws IOException {
 			if (sk.isReadable()) {
-				// Ê¹ÓÃ NIO ¶ÁÈ¡ ChannelÖÐµÄÊý¾Ý£¬Õâ¸öºÍÈ«¾Ö±äÁ¿scÊÇÒ»ÑùµÄ£¬ÒòÎªÖ»×¢²áÁËÒ»¸öSocketChannel
-				// sc¼ÈÄÜÐ´Ò²ÄÜ¶Á£¬Õâ±ßÊÇ¶Á
+				// Ê¹ï¿½ï¿½ NIO ï¿½ï¿½È¡ Channelï¿½Ðµï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½scï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ÎªÖ»×¢ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½SocketChannel
+				// scï¿½ï¿½ï¿½ï¿½Ð´Ò²ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶ï¿½
 				SocketChannel sc = (SocketChannel) sk.channel();
 
 				ByteBuffer buff = ByteBuffer.allocate(1024);
@@ -83,12 +83,12 @@ public class ChatRoomClient {
 					buff.flip();
 					content += charset.decode(buff);
 				}
-				// ÈôÏµÍ³·¢ËÍÍ¨ÖªÃû×ÖÒÑ¾­´æÔÚ£¬ÔòÐèÒª»»¸öêÇ³Æ
+				// ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½
 				if (USER_EXIST.equals(content)) {
 					name = "";
 				}
 				System.out.println(content);
-				if (content.equals(SYS_QUIT)) {// £¡ÕâÀïÒªÏÈÈ·ÈÏÊÕµ½µÄÊÇÊ²Ã´
+				if (content.equals(SYS_QUIT)) {// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½È·ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½Ê²Ã´
 					sk.cancel();
 					sk.channel().close();
 				}
