@@ -7,7 +7,7 @@ public class Bubble {
 			return;
 
 		for (int i = 0; i < nums.length - 1; i++) {
-			for (int j = nums.length - 1; j > i; j--) {
+			for (int j = nums.length - 1; j > i; j--) {//从后向前冒泡
 				if (nums[j] < nums[j - 1]) {
 					int tmp = nums[j];
 					nums[j] = nums[j - 1];
