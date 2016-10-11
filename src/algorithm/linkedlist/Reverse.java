@@ -6,7 +6,7 @@ public class Reverse {
 	public static ListNode reverseInPairs(ListNode head) {
 		ListNode dummy = new ListNode(0);
 		ListNode p = head;
-		ListNode pre = dummy;// 记住要有4个指针来标记，其中两个是后在循环里赋值的
+		ListNode pre = dummy;// 璁颁綇瑕佹湁4涓寚閽堟潵鏍囪锛屽叾涓袱涓槸鍚庡湪寰幆閲岃祴鍊肩殑
 
 		dummy.next = p;
 

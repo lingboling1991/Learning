@@ -7,7 +7,7 @@ public class AddTwoNum {
 		ListNode res = new ListNode(0);
 		ListNode p = res;
 		int isMoreThanTen = 0;
-		while (a != null || b != null) {// Á½¸öÓĞÒ»¸ö²»Îªnull¾Í¼ÌĞø
+		while (a != null || b != null) {// ä¸¤ä¸ªæœ‰ä¸€ä¸ªä¸ä¸ºnullå°±ç»§ç»­
 			int aVal = (a == null) ? 0 : a.val;
 			int bVal = (b == null) ? 0 : b.val;
 

@@ -1,7 +1,7 @@
 package algorithm.other;
 
 public class PalindromicSubstring {
-	// ������Ӵ�
+	// 最长回文子串
 	public static String getLongest(String src) {
 		int start = 0, end = 0;
 
@@ -10,8 +10,7 @@ public class PalindromicSubstring {
 			int len2 = expanding(src, i, i + 1);
 			int len = Math.max(len1, len2);
 
-			if (len > end - start) {// ע������end - start�ǻ��ͬ��λ���������lenС1�ģ���Ϊ[0,
-				// 2]ʵ���ϰ���3���ַ�
+			if (len > end - start) {//注意这里end - start是会比同样位置算出来的len小1的，因为[0,2]实际上包括3个字符
 				start = i - (len - 1) / 2;
 				end = i + len / 2;
 			}
@@ -27,7 +26,7 @@ public class PalindromicSubstring {
 			r += 1;
 		}
 
-		return r - l - 1;// ����֮����Ҫ-1������+1������bcaad����ʱl��c��r��d
+		return r - l - 1;// 这里之所以要-1而不是+1，例如bcaad，此时l在c，r在d
 	}
 
 	public static void main(String[] args) {

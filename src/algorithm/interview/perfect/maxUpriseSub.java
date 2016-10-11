@@ -12,7 +12,7 @@ public class maxUpriseSub {
 		}
 
 		List<Integer> res = getMaxUpriseSub(nums);
-
+		System.out.println(res);
 	}
 
 	public static List<Integer> getMaxUpriseSub(List<Integer> nums) {

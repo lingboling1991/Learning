@@ -1,7 +1,7 @@
-package algorithm.interview.netease;
+package algorithm.interview.netease.youdao;
 
 public class Monkey {
-	public static void main(String[] args) {//这里需要进行高精度运算，1000天这个值太大，肯定会溢出
+	public static void main(String[] args) {
 		// amIRight(6148914691236517202L);
 		System.out.println(check(50));
 	}
